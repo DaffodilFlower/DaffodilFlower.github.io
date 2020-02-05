@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>水仙花&#39;s blog</title>
+  
+  <subtitle>关注但不限于机器学习、NLP、数学等有趣的东西</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://daffodilflower.github.io/"/>
+  <updated>2020-02-05T10:15:13.875Z</updated>
+  <id>https://daffodilflower.github.io/</id>
+  
+  <author>
+    <name>daffodil</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实体链接</title>
+    <link href="https://daffodilflower.github.io/entity-linking/"/>
+    <id>https://daffodilflower.github.io/entity-linking/</id>
+    <published>2020-02-05T09:34:17.000Z</published>
+    <updated>2020-02-05T10:15:13.875Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;实体链接&quot;&gt;&lt;a href=&quot;#实体链接&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="知识图谱" scheme="https://daffodilflower.github.io/categories/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
+    
+    
+      <category term="知识图谱" scheme="https://daffodilflower.github.io/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二零一七年终总结</title>
+    <link href="https://daffodilflower.github.io/2017-conclusion/"/>
+    <id>https://daffodilflower.github.io/2017-conclusion/</id>
+    <published>2018-01-22T04:32:09.000Z</published>
+    <updated>2020-02-04T14:22:41.659Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://daffodilflower.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://daffodilflower.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://daffodilflower.github.io/test/"/>
+    <id>https://daffodilflower.github.io/test/</id>
+    <published>2018-01-22T04:32:09.000Z</published>
+    <updated>2020-02-05T04:19:18.670Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;feaf&quot;&gt;&lt;a href=&quot;#feaf&quot; class=&quot;headerlink&quot; title=&quot;feaf&quot;&gt;&lt;/a&gt;feaf&lt;/h1&gt;&lt;p&gt;$faf_a =
+        
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://daffodilflower.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://daffodilflower.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>
