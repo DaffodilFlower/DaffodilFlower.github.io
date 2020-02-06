@@ -6,15 +6,47 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://daffodilflower.github.io/"/>
-  <updated>2020-02-05T14:40:21.909Z</updated>
+  <updated>2020-02-06T04:09:32.872Z</updated>
   <id>https://daffodilflower.github.io/</id>
   
   <author>
-    <name>daffodil</name>
+    <name>DaffodilFlower</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Word文件转换为HTML</title>
+    <link href="https://daffodilflower.github.io/word2html/"/>
+    <id>https://daffodilflower.github.io/word2html/</id>
+    <published>2020-02-06T03:37:50.000Z</published>
+    <updated>2020-02-06T04:09:32.872Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的&lt;strong&gt;知识&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="https://daffodilflower.github.io/categories/Python/"/>
+    
+    
+      <category term="知识图谱" scheme="https://daffodilflower.github.io/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
+    
+      <category term="Python" scheme="https://daffodilflower.github.io/tags/Python/"/>
+    
+      <category term="mammoth" scheme="https://daffodilflower.github.io/tags/mammoth/"/>
+    
+  </entry>
   
   <entry>
     <title>实体链接</title>
@@ -40,58 +72,6 @@
     
     
       <category term="知识图谱" scheme="https://daffodilflower.github.io/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二零一七年终总结</title>
-    <link href="https://daffodilflower.github.io/2017-conclusion/"/>
-    <id>https://daffodilflower.github.io/2017-conclusion/</id>
-    <published>2018-01-22T04:32:09.000Z</published>
-    <updated>2020-02-04T14:22:41.659Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://daffodilflower.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="https://daffodilflower.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="https://daffodilflower.github.io/test/"/>
-    <id>https://daffodilflower.github.io/test/</id>
-    <published>2018-01-22T04:32:09.000Z</published>
-    <updated>2020-02-05T04:19:18.670Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;feaf&quot;&gt;&lt;a href=&quot;#feaf&quot; class=&quot;headerlink&quot; title=&quot;feaf&quot;&gt;&lt;/a&gt;feaf&lt;/h1&gt;&lt;p&gt;$faf_a =
-        
-      
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://daffodilflower.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="https://daffodilflower.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Word文件转换为HTML</title>
+      <link href="/word2html/"/>
+      <url>/word2html/</url>
+      
+        <content type="html"><![CDATA[<p>在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的<strong>知识</strong>。</p><p>而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。</p><p><strong>可以使用python的mammoth库将docx文件转换为html文件，也就是转换为半结构化到文本文件。</strong></p><p>对于mammoth库的使用有command line的形式，也可以是python调用的形式。</p><h2 id="Command-line"><a href="#Command-line" class="headerlink" title="Command line"></a>Command line</h2><p>如果用command line，需要指定输入的docx文件和输出的html文件路径：</p><pre class="line-numbers language-sh"><code class="language-sh">mammoth document.docx output.html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>如果没有指定输出文件路径，则输出到stdout。</p><h2 id="Python调用"><a href="#Python调用" class="headerlink" title="Python调用"></a>Python调用</h2><p>基本函数是 <code>mammoth.convert_to_html</code>，docx文件需要以二进制打开：</p><pre class="line-numbers language-py"><code class="language-py">import mammothwith open("document.docx", "rb") as docx_file:    result = mammoth.convert_to_html(docx_file)    html = result.value # The generated HTML    messages = result.messages # Any messages, such as warnings during conversion<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这是最基本到功能，还可以使用mammoth库其他的API定制转换的格式，具体见 <a href="https://pypi.org/project/mammoth/" target="_blank" rel="noopener">https://pypi.org/project/mammoth/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 知识图谱 </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> mammoth </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>实体链接</title>
       <link href="/entity-linking/"/>
       <url>/entity-linking/</url>
@@ -21,56 +50,6 @@
         <tags>
             
             <tag> 知识图谱 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>二零一七年终总结</title>
-      <link href="/2017-conclusion/"/>
-      <url>/2017-conclusion/</url>
-      
-        <content type="html"><![CDATA[<div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407679465&auto=1&height=66"></iframe></div><p>时间过得很快，终于等到放寒假了。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 随笔 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 随笔 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>test</title>
-      <link href="/test/"/>
-      <url>/test/</url>
-      
-        <content type="html"><![CDATA[<h1 id="feaf"><a href="#feaf" class="headerlink" title="feaf"></a>feaf</h1><p>$faf_a = 1^0$</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 随笔 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 随笔 </tag>
             
         </tags>
       

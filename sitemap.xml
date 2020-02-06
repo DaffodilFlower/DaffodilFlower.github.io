@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://daffodilflower.github.io/word2html/</loc>
+    
+    <lastmod>2020-02-06T04:09:32.872Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://daffodilflower.github.io/entity-linking/</loc>
     
     <lastmod>2020-02-05T14:40:21.909Z</lastmod>
@@ -9,23 +16,9 @@
   </url>
   
   <url>
-    <loc>https://daffodilflower.github.io/test/</loc>
-    
-    <lastmod>2020-02-05T04:19:18.670Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://daffodilflower.github.io/about/index.html</loc>
     
     <lastmod>2020-02-05T04:16:58.068Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://daffodilflower.github.io/2017-conclusion/</loc>
-    
-    <lastmod>2020-02-04T14:22:41.659Z</lastmod>
     
   </url>
   
