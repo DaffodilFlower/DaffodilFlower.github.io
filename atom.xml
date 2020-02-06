@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>水仙花&#39;s blog</title>
   
-  <subtitle>关注但不限于机器学习、NLP、数学等有趣的东西</subtitle>
+  <subtitle>机器学习 NLP 数学</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://daffodilflower.github.io/"/>
