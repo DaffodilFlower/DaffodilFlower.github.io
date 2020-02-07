@@ -4,13 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Word文件转换为HTML, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="NLP中的Attention（1）, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的知识。
-而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。
-可以使用python的mammoth库将do">
+    <meta name="description" content="传统的seq2seq传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Word文件转换为HTML | 水仙花&#39;s blog</title>
+    <title>NLP中的Attention（1） | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -292,13 +290,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Word文件转换为HTML
+                        NLP中的Attention（1）
                     </div>
                 </div>
             </div>
@@ -409,16 +407,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Python/" target="_blank">
-                            <span class="chip bg-color">Python</span>
+                        <a href="/tags/Attention/" target="_blank">
+                            <span class="chip bg-color">Attention</span>
                         </a>
                         
-                        <a href="/tags/mammoth/" target="_blank">
-                            <span class="chip bg-color">mammoth</span>
-                        </a>
-                        
-                        <a href="/tags/知识图谱/" target="_blank">
-                            <span class="chip bg-color">知识图谱</span>
+                        <a href="/tags/Seq2seq/" target="_blank">
+                            <span class="chip bg-color">Seq2seq</span>
                         </a>
                         
                     </div>
@@ -429,8 +423,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Python/" class="post-category" target="_blank">
-                            Python
+                        <a href="/categories/Attention/" class="post-category" target="_blank">
+                            Attention
                         </a>
                         
                     </div>
@@ -441,7 +435,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-06
+                    2020-02-07
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -455,14 +449,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    259
+                    703
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -478,21 +472,29 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的<strong>知识</strong>。</p>
-<p>而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。</p>
-<p><strong>可以使用python的mammoth库将docx文件转换为html文件，也就是转换为半结构化到文本文件。</strong></p>
-<p>对于mammoth库的使用有command line的形式，也可以是python调用的形式。</p>
-<h2 id="Command-line"><a href="#Command-line" class="headerlink" title="Command line"></a>Command line</h2><p>如果用command line，需要指定输入的docx文件和输出的html文件路径：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">mammoth document.docx output.html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果没有指定输出文件路径，则输出到stdout。</p>
-<h2 id="Python调用"><a href="#Python调用" class="headerlink" title="Python调用"></a>Python调用</h2><p>基本函数是 <code>mammoth.convert_to_html</code>，docx文件需要以二进制打开：</p>
-<pre class="line-numbers language-py"><code class="language-py">import mammoth
-
-with open("document.docx", "rb") as docx_file:
-    result = mammoth.convert_to_html(docx_file)
-    html = result.value # The generated HTML
-    messages = result.messages # Any messages, such as warnings during conversion<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这是最基本到功能，还可以使用mammoth库其他的API定制转换的格式，具体见 <a href="https://pypi.org/project/mammoth/" target="_blank" rel="noopener">https://pypi.org/project/mammoth/</a></p>
+                <h2 id="传统的seq2seq"><a href="#传统的seq2seq" class="headerlink" title="传统的seq2seq"></a>传统的seq2seq</h2><p>传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为可观的效果，却会成为较长的句子效果不好。</p>
+<p><img src="1.png" alt></p>
+<h2 id="Attention及其优点"><a href="#Attention及其优点" class="headerlink" title="Attention及其优点"></a>Attention及其优点</h2><p>Attention最初是在计算机视觉领域被提出的，在NLP领域，首先提出的是《NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE》</p>
+<p><strong>Attention 的核心优点</strong>就是通过在decode阶段对<strong>source sequence中相关的部分给予attention</strong>，注意这里是要<strong>相关的才予以attention</strong>。</p>
+<p>Attention 机制提供了一种新的方法，可以使 decoder 对于 source sequence 中的信息选择重点进行记忆，也就是把encoding过程中的所有hidden states作为一个pool，有点像random access memory，在decode的时候可以按需retrieve。</p>
+<p><strong>这也符合人类的阅读习惯，择其善者而用之</strong>，比如人在翻译的英语句子时候，不是先把一个长句熟记于心后再开始闭着眼睛翻译，通常的做法是通读全文，把握整体，然后一边查看原文一边翻译，Attention就是这样一个过程，有点像传统机器翻译中的语料对齐的过程，即找出哪部分原文对应哪部分译文，而NMT中的attention是隐式的对齐。</p>
+<h2 id="Attention的步骤"><a href="#Attention的步骤" class="headerlink" title="Attention的步骤"></a>Attention的步骤</h2><p>那么 attention 这种重大改进是如何做到的呢？Attention在每个decode的time step都会进行计算，主要包含了如下四个步骤，如图所示：</p>
+<p><img src="2.png" alt></p>
+<p>1) <strong>计算 attention weights</strong></p>
+<p>Attention weights是通过当前decoder的hidden state $h_t$和source sequence每一个的 hiddden state $\overline{h}_s$ 进行计算，计算方法如公式(1):</p>
+<p>$$\alpha _{st} = \frac{exp(score(\overline{h}_s,h_t))}{\sum_{s’}exp(score(\overline{h}_s’,h_t))} \tag{1}$$</p>
+<p>关于 score 函数的选择有很多，如下所示：</p>
+<p><img src="3.png" alt></p>
+<p>代表性的方式有三个，《Neural Machine Translation by Jointly Learning to Align and Translate》提出的是第三个，两个向量之间没有interaction.</p>
+<p>而《Effective Approaches to Attention-based Neural Machine Translation》提出的是第二个，两个向量interaction比第一个更复杂，被广泛采用。</p>
+<p>2) <strong>计算context vector</strong></p>
+<p>根据公式(2)中计算得到的注意力权重，源序列状态的权重均值(即上下文向量)的计算过程可由公式(3)表示。</p>
+<p>$$c_t = \sum_{s} \alpha_{st} \overline{h}_s \tag{3}$$</p>
+<p>3) <strong>生成attention vector</strong></p>
+<p>将context vector和当前decoder的hidden state作为参数，代入公式(4):</p>
+<p>$$c_t = f(c_t,h_t) = \tanh（W_c[c_t;h_t]） \tag{4}$$</p>
+<p>4) <strong>decoder的输入</strong></p>
+<p>使用公式(4)中得到的attention vector，除了用于得到模型的归一化逻辑输出和损失值，还作为下一个 time step 的输入，与传统的 seq2seq 模型中最后一层的隐藏层状态相似。</p>
 
             </div>
             <hr />
@@ -527,9 +529,9 @@ with open("document.docx", "rb") as docx_file:
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Word文件转换为HTML》
+                    《NLP中的Attention（1）》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/word2html/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/attention-1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -570,7 +572,7 @@ with open("document.docx", "rb") as docx_file:
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'word2html/',
+        id: 'attention-1/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -591,9 +593,64 @@ with open("document.docx", "rb") as docx_file:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/attention-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="NLP中的Attention（1）">
+                        
+                        <span class="card-title">NLP中的Attention（1）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            传统的seq2seq传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Attention/" class="post-category" target="_blank">
+                                    Attention
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Attention/" target="_blank">
+                        <span class="chip bg-color">Attention</span>
+                    </a>
+                    
+                    <a href="/tags/Seq2seq/" target="_blank">
+                        <span class="chip bg-color">Seq2seq</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/recall-at-k/">
                     <div class="card-image">
@@ -612,9 +669,9 @@ with open("document.docx", "rb") as docx_file:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -640,66 +697,6 @@ with open("document.docx", "rb") as docx_file:
                     
                     <a href="/tags/QA/" target="_blank">
                         <span class="chip bg-color">QA</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
-            </div>
-            <div class="card">
-                <a href="/word2html/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Word文件转换为HTML">
-                        
-                        <span class="card-title">Word文件转换为HTML</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的知识。
-而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。
-可以使用python的mammoth库将do
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Python/" class="post-category" target="_blank">
-                                    Python
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                    <a href="/tags/mammoth/" target="_blank">
-                        <span class="chip bg-color">mammoth</span>
-                    </a>
-                    
-                    <a href="/tags/知识图谱/" target="_blank">
-                        <span class="chip bg-color">知识图谱</span>
                     </a>
                     
                 </div>

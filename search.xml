@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>NLP中的Attention（1）</title>
+      <link href="/attention-1/"/>
+      <url>/attention-1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="传统的seq2seq"><a href="#传统的seq2seq" class="headerlink" title="传统的seq2seq"></a>传统的seq2seq</h2><p>传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为可观的效果，却会成为较长的句子效果不好。</p><p><img src="1.png" alt></p><h2 id="Attention及其优点"><a href="#Attention及其优点" class="headerlink" title="Attention及其优点"></a>Attention及其优点</h2><p>Attention最初是在计算机视觉领域被提出的，在NLP领域，首先提出的是《NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE》</p><p><strong>Attention 的核心优点</strong>就是通过在decode阶段对<strong>source sequence中相关的部分给予attention</strong>，注意这里是要<strong>相关的才予以attention</strong>。</p><p>Attention 机制提供了一种新的方法，可以使 decoder 对于 source sequence 中的信息选择重点进行记忆，也就是把encoding过程中的所有hidden states作为一个pool，有点像random access memory，在decode的时候可以按需retrieve。</p><p><strong>这也符合人类的阅读习惯，择其善者而用之</strong>，比如人在翻译的英语句子时候，不是先把一个长句熟记于心后再开始闭着眼睛翻译，通常的做法是通读全文，把握整体，然后一边查看原文一边翻译，Attention就是这样一个过程，有点像传统机器翻译中的语料对齐的过程，即找出哪部分原文对应哪部分译文，而NMT中的attention是隐式的对齐。</p><h2 id="Attention的步骤"><a href="#Attention的步骤" class="headerlink" title="Attention的步骤"></a>Attention的步骤</h2><p>那么 attention 这种重大改进是如何做到的呢？Attention在每个decode的time step都会进行计算，主要包含了如下四个步骤，如图所示：</p><p><img src="2.png" alt></p><p>1) <strong>计算 attention weights</strong></p><p>Attention weights是通过当前decoder的hidden state $h_t$和source sequence每一个的 hiddden state $\overline{h}_s$ 进行计算，计算方法如公式(1):</p><p>$$\alpha _{st} = \frac{exp(score(\overline{h}_s,h_t))}{\sum_{s’}exp(score(\overline{h}_s’,h_t))} \tag{1}$$</p><p>关于 score 函数的选择有很多，如下所示：</p><p><img src="3.png" alt></p><p>代表性的方式有三个，《Neural Machine Translation by Jointly Learning to Align and Translate》提出的是第三个，两个向量之间没有interaction.</p><p>而《Effective Approaches to Attention-based Neural Machine Translation》提出的是第二个，两个向量interaction比第一个更复杂，被广泛采用。</p><p>2) <strong>计算context vector</strong></p><p>根据公式(2)中计算得到的注意力权重，源序列状态的权重均值(即上下文向量)的计算过程可由公式(3)表示。</p><p>$$c_t = \sum_{s} \alpha_{st} \overline{h}_s \tag{3}$$</p><p>3) <strong>生成attention vector</strong></p><p>将context vector和当前decoder的hidden state作为参数，代入公式(4):</p><p>$$c_t = f(c_t,h_t) = \tanh（W_c[c_t;h_t]） \tag{4}$$</p><p>4) <strong>decoder的输入</strong></p><p>使用公式(4)中得到的attention vector，除了用于得到模型的归一化逻辑输出和损失值，还作为下一个 time step 的输入，与传统的 seq2seq 模型中最后一层的隐藏层状态相似。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Attention </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Attention </tag>
+            
+            <tag> Seq2seq </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Recall@k是什么</title>
       <link href="/recall-at-k/"/>
       <url>/recall-at-k/</url>
