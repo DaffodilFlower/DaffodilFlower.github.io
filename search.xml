@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Recall@k是什么</title>
+      <link href="/recall-at-k/"/>
+      <url>/recall-at-k/</url>
+      
+        <content type="html"><![CDATA[<p>通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。</p><p>对于检索式chatbot来说，它的回复的内容都处于一个corpus中，当其收到用户输入的句子后，chatbot会在corpus中进行搜索并提取回答内容进行输出。</p><p>对此，可以采用的检索标准有 <strong>recall@k</strong>，即给定 10 个候选响应（包含 1 个真实响应和 9 个干扰项噪声响应），让模型从中挑出 k 个最好的响应。</p><p>如果模型选择出的 k 项回答中包含对应的正确响应，则该测试样本的结果将被标记为正确。自然，k 越大，那么这个任务就会更加简单。</p><p>检索式chatbot不要求生成任何新的文本，只是从固定的集合中挑选一种回复而已，因而这种方式要求corpus的信息尽可能的大和丰富，这样才能精准地匹配用户内容，并且输出也较为高质量，因为语料库中的既定语句序列相对于生成式chatbot生成的序列更加自然和真实。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Evaluation metrics </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Evaluation metrics </tag>
+            
+            <tag> chatbot </tag>
+            
+            <tag> QA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Word文件转换为HTML</title>
       <link href="/word2html/"/>
       <url>/word2html/</url>

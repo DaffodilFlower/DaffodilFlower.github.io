@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://daffodilflower.github.io/"/>
-  <updated>2020-02-06T04:09:32.872Z</updated>
+  <updated>2020-02-07T02:41:32.396Z</updated>
   <id>https://daffodilflower.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Recall@k是什么</title>
+    <link href="https://daffodilflower.github.io/recall-at-k/"/>
+    <id>https://daffodilflower.github.io/recall-at-k/</id>
+    <published>2020-02-06T14:30:24.000Z</published>
+    <updated>2020-02-07T02:41:32.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。&lt;/p&gt;
+&lt;p&gt;对于检索式chatbot来说，它的回复
+        
+      
+    
+    </summary>
+    
+      <category term="Evaluation metrics" scheme="https://daffodilflower.github.io/categories/Evaluation-metrics/"/>
+    
+    
+      <category term="Evaluation metrics" scheme="https://daffodilflower.github.io/tags/Evaluation-metrics/"/>
+    
+      <category term="chatbot" scheme="https://daffodilflower.github.io/tags/chatbot/"/>
+    
+      <category term="QA" scheme="https://daffodilflower.github.io/tags/QA/"/>
+    
+  </entry>
   
   <entry>
     <title>Word文件转换为HTML</title>

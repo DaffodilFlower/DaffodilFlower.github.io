@@ -4,13 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Word文件转换为HTML, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="Recall@k是什么, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的知识。
-而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。
-可以使用python的mammoth库将do">
+    <meta name="description" content="通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。
+对于检索式chat">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Word文件转换为HTML | 水仙花&#39;s blog</title>
+    <title>Recall@k是什么 | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -292,13 +291,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Word文件转换为HTML
+                        Recall@k是什么
                     </div>
                 </div>
             </div>
@@ -409,16 +408,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Python/" target="_blank">
-                            <span class="chip bg-color">Python</span>
+                        <a href="/tags/Evaluation-metrics/" target="_blank">
+                            <span class="chip bg-color">Evaluation metrics</span>
                         </a>
                         
-                        <a href="/tags/mammoth/" target="_blank">
-                            <span class="chip bg-color">mammoth</span>
+                        <a href="/tags/chatbot/" target="_blank">
+                            <span class="chip bg-color">chatbot</span>
                         </a>
                         
-                        <a href="/tags/知识图谱/" target="_blank">
-                            <span class="chip bg-color">知识图谱</span>
+                        <a href="/tags/QA/" target="_blank">
+                            <span class="chip bg-color">QA</span>
                         </a>
                         
                     </div>
@@ -429,8 +428,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Python/" class="post-category" target="_blank">
-                            Python
+                        <a href="/categories/Evaluation-metrics/" class="post-category" target="_blank">
+                            Evaluation metrics
                         </a>
                         
                     </div>
@@ -455,7 +454,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    259
+                    365
                 </div>
                 
 
@@ -478,21 +477,11 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的<strong>知识</strong>。</p>
-<p>而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。</p>
-<p><strong>可以使用python的mammoth库将docx文件转换为html文件，也就是转换为半结构化到文本文件。</strong></p>
-<p>对于mammoth库的使用有command line的形式，也可以是python调用的形式。</p>
-<h2 id="Command-line"><a href="#Command-line" class="headerlink" title="Command line"></a>Command line</h2><p>如果用command line，需要指定输入的docx文件和输出的html文件路径：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">mammoth document.docx output.html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果没有指定输出文件路径，则输出到stdout。</p>
-<h2 id="Python调用"><a href="#Python调用" class="headerlink" title="Python调用"></a>Python调用</h2><p>基本函数是 <code>mammoth.convert_to_html</code>，docx文件需要以二进制打开：</p>
-<pre class="line-numbers language-py"><code class="language-py">import mammoth
-
-with open("document.docx", "rb") as docx_file:
-    result = mammoth.convert_to_html(docx_file)
-    html = result.value # The generated HTML
-    messages = result.messages # Any messages, such as warnings during conversion<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这是最基本到功能，还可以使用mammoth库其他的API定制转换的格式，具体见 <a href="https://pypi.org/project/mammoth/" target="_blank" rel="noopener">https://pypi.org/project/mammoth/</a></p>
+                <p>通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。</p>
+<p>对于检索式chatbot来说，它的回复的内容都处于一个corpus中，当其收到用户输入的句子后，chatbot会在corpus中进行搜索并提取回答内容进行输出。</p>
+<p>对此，可以采用的检索标准有 <strong>recall@k</strong>，即给定 10 个候选响应（包含 1 个真实响应和 9 个干扰项噪声响应），让模型从中挑出 k 个最好的响应。</p>
+<p>如果模型选择出的 k 项回答中包含对应的正确响应，则该测试样本的结果将被标记为正确。自然，k 越大，那么这个任务就会更加简单。</p>
+<p>检索式chatbot不要求生成任何新的文本，只是从固定的集合中挑选一种回复而已，因而这种方式要求corpus的信息尽可能的大和丰富，这样才能精准地匹配用户内容，并且输出也较为高质量，因为语料库中的既定语句序列相对于生成式chatbot生成的序列更加自然和真实。</p>
 
             </div>
             <hr />
@@ -527,9 +516,9 @@ with open("document.docx", "rb") as docx_file:
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Word文件转换为HTML》
+                    《Recall@k是什么》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/word2html/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/recall-at-k/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -570,7 +559,7 @@ with open("document.docx", "rb") as docx_file:
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'word2html/',
+        id: 'recall-at-k/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -591,9 +580,10 @@ with open("document.docx", "rb") as docx_file:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/recall-at-k/">
                     <div class="card-image">
@@ -612,9 +602,9 @@ with open("document.docx", "rb") as docx_file:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -627,6 +617,7 @@ with open("document.docx", "rb") as docx_file:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -650,7 +641,7 @@ with open("document.docx", "rb") as docx_file:
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/word2html/">
@@ -686,7 +677,6 @@ with open("document.docx", "rb") as docx_file:
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
