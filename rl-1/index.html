@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Recall@k是什么, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="Reinforcement Learning（1）：基础, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。
-对于检索式chat">
+    <meta name="description" content="Reinforcement learning（RL）是一种 learning paradigm ，一个智能的agent 通过与最开始不了解的 environment 交互并学习作出最优决策。
+与supervised learning 相比，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Recall@k是什么 | 水仙花&#39;s blog</title>
+    <title>Reinforcement Learning（1）：基础 | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +291,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Recall@k是什么
+                        Reinforcement Learning（1）：基础
                     </div>
                 </div>
             </div>
@@ -408,16 +408,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/chatbot/" target="_blank">
-                            <span class="chip bg-color">chatbot</span>
-                        </a>
-                        
-                        <a href="/tags/QA/" target="_blank">
-                            <span class="chip bg-color">QA</span>
-                        </a>
-                        
-                        <a href="/tags/Evaluation-metrics/" target="_blank">
-                            <span class="chip bg-color">Evaluation metrics</span>
+                        <a href="/tags/Reinforcement-Learning/" target="_blank">
+                            <span class="chip bg-color">Reinforcement Learning</span>
                         </a>
                         
                     </div>
@@ -428,8 +420,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Evaluation-metrics/" class="post-category" target="_blank">
-                            Evaluation metrics
+                        <a href="/categories/Reinforcement-Learning/" class="post-category" target="_blank">
+                            Reinforcement Learning
                         </a>
                         
                     </div>
@@ -440,7 +432,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-06
+                    2020-02-10
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -454,14 +446,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    365
+                    527
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -477,11 +469,32 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。</p>
-<p>对于检索式chatbot来说，它的回复的内容都处于一个corpus中，当其收到用户输入的句子后，chatbot会在corpus中进行搜索并提取回答内容进行输出。</p>
-<p>对此，可以采用的检索标准有 <strong>recall@k</strong>，即给定 10 个候选响应（包含 1 个真实响应和 9 个干扰项噪声响应），让模型从中挑出 k 个最好的响应。</p>
-<p>如果模型选择出的 k 项回答中包含对应的正确响应，则该测试样本的结果将被标记为正确。自然，k 越大，那么这个任务就会更加简单。</p>
-<p>检索式chatbot不要求生成任何新的文本，只是从固定的集合中挑选一种回复而已，因而这种方式要求corpus的信息尽可能的大和丰富，这样才能精准地匹配用户内容，并且输出也较为高质量，因为语料库中的既定语句序列相对于生成式chatbot生成的序列更加自然和真实。</p>
+                <p>Reinforcement learning（RL）是一种 learning paradigm ，一个智能的agent 通过与最开始不了解的 environment 交互并学习作出最优决策。</p>
+<p>与supervised learning 相比，RL 是没有老师的学习（即没有supervisory labels），这是它的一个独特挑战 </p>
+<p><img src="1.png" alt></p>
+<p>如图所示，agent 与 environment 的交互被建模为 discrete-time Markov decision process（MDP, Puterman, 1994)，被描述为五元组：</p>
+<p>$$M = \{ S,A,P,R,\gamma\}$$</p>
+<ul>
+<li>$S$ 是 environment 处于的 states 集合，可能无限</li>
+<li>$A$ 是 actions 集合，agent 在某个 state 采用集合中的action，可能无限</li>
+<li>$P(s’|s, a)$ 是 environment 在 state s 时采用 action a 到一个新的 state s’ 的transition probability</li>
+<li>$R(s, a)$ 是 agent 在 state s 采用 action a 直接收到的average reward</li>
+<li>$\gamma \in (0, 1]$ 是 discount factor.</li>
+</ul>
+<p>agent 与 environment 的交互可以被记录为一个 trajectory $(s_1, a_1, r_1, . . .)$，通过如下步骤生成，在 step $t = 1, 2, …,$：</p>
+<ul>
+<li>agent 观察 environment 的 current state $s_t \in S$，然后采用action $a_t \in A$</li>
+<li>根据 transition probabilities $P(·|s_t, a_t)$， environment 转移到下一个 state $s_{t+1}$</li>
+<li>与转移相关的是 immediate reward $r_t \in R$， 它的平均是 $R(s_t, a_t)$</li>
+</ul>
+<p>忽略下标，每个 step 产生一个 tuple $(s, a, r, s’)$，<strong>叫做一个 transition</strong>。 </p>
+<p><strong>RL agent 的目标是</strong>通过选取最优的 action 来最大化 long-term reward。它的 policy，记作 $\pi$，<strong>可以是 deterministic 或者 stochastic</strong>。不论是哪种policy， 使用 $a \sim \pi(s)$ 来表示 state $s$ 下按照 $\pi$ 来选取 action。</p>
+<p>给定一个 policy $\pi$，<strong>一个 state $s$ 的 value</strong> 是从这个 state 起的 average discounted long-term reward：<br>$$V_{\pi}(s) := E[r_1 + {\gamma}r_2 + {\gamma_2}r_3 + … |s_1 = s, a_i \sim \pi (s_i), \forall i \geq 1].$$</p>
+<p>我们感兴趣的是优化 policy 使得 $V_{\pi}$ 对于所有的 states 最大化。</p>
+<p>设 $\pi^\star$ 表示 optimal policy， $V^\star$ 表示最优的 policy 对应的 value function（或 optimal value function）。</p>
+<p>在很多情况下，使用另一个形式的 value function 也就是 Q-function 更为方便：<br>$$Q_{\pi}(s, a) := E[r_1 + {\gamma}r_2 + {\gamma_2}r_3 + · · · |s_1 = s, a_1 = a, a_i \sim _{\pi}(s_i), \forall i &gt; 1]$$</p>
+<p>它度量在 state s 首次选择 a 之后按照 policy $\pi$ 来选择 action 的average discounted long-term reward。</p>
+<p>Optimal Q-function 对应的 optimal policy 记作 $Q^*$</p>
 
             </div>
             <hr />
@@ -516,9 +529,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Recall@k是什么》
+                    《Reinforcement Learning（1）：基础》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/recall-at-k/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/rl-1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -559,7 +572,7 @@
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'recall-at-k/',
+        id: 'rl-1/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -584,31 +597,33 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/attention-1/">
+                <a href="/rl-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="NLP中的Attention（1）">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Reinforcement Learning（2）：Q-leanring">
                         
-                        <span class="card-title">NLP中的Attention（1）</span>
+                        <span class="card-title">Reinforcement Learning（2）：Q-leanring</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            传统的seq2seq传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为
+                            Q-learningQ-learning 基于这个观察：如果 optimal Q-function 可用，则optimal policy 可以被直接获得。
+具体来说， optimal policy 能够被公式1决定：
+$$\pi^{\sta
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-10
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Attention/" class="post-category" target="_blank">
-                                    Attention
+                            <a href="/categories/Reinforcement-Learning/" class="post-category" target="_blank">
+                                    Reinforcement Learning
                                 </a>
                             
                             
@@ -618,12 +633,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Attention/" target="_blank">
-                        <span class="chip bg-color">Attention</span>
+                    <a href="/tags/Reinforcement-Learning/" target="_blank">
+                        <span class="chip bg-color">Reinforcement Learning</span>
                     </a>
                     
-                    <a href="/tags/Seq2seq/" target="_blank">
-                        <span class="chip bg-color">Seq2seq</span>
+                    <a href="/tags/Q-leanring/" target="_blank">
+                        <span class="chip bg-color">Q-leanring</span>
                     </a>
                     
                 </div>
@@ -637,33 +652,32 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/word2html/">
+                <a href="/conversational-ai-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Word文件转换为HTML">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Conversational AI（1）：概述">
                         
-                        <span class="card-title">Word文件转换为HTML</span>
+                        <span class="card-title">Conversational AI（1）：概述</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的知识。
-而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。
-可以使用python的mammoth库将do
+                            开发一个不仅能模拟人类对话也可以回答问题（从电影明星的新闻到爱因斯坦相对论），还能完成复杂任务（旅行计划）的conversational AI，是长久以来 AI 领域的一个目标。
+Conversational AI 和 Dialogue s
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category" target="_blank">
-                                    Python
+                            <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                                    Conversational AI
                                 </a>
                             
                             
@@ -673,16 +687,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/chatbot/" target="_blank">
+                        <span class="chip bg-color">chatbot</span>
                     </a>
                     
-                    <a href="/tags/mammoth/" target="_blank">
-                        <span class="chip bg-color">mammoth</span>
-                    </a>
-                    
-                    <a href="/tags/知识图谱/" target="_blank">
-                        <span class="chip bg-color">知识图谱</span>
+                    <a href="/tags/QA/" target="_blank">
+                        <span class="chip bg-color">QA</span>
                     </a>
                     
                 </div>

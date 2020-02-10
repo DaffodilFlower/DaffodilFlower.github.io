@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Recall@k是什么, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="Reinforcement Learning（4）：, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。
-对于检索式chat">
+    <meta name="description" content="Reinforcement Learning（4）： | 水仙花&#39;s blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Recall@k是什么 | 水仙花&#39;s blog</title>
+    <title>Reinforcement Learning（4）： | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +290,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Recall@k是什么
+                        Reinforcement Learning（4）：
                     </div>
                 </div>
             </div>
@@ -407,32 +406,11 @@
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        
-                        <a href="/tags/chatbot/" target="_blank">
-                            <span class="chip bg-color">chatbot</span>
-                        </a>
-                        
-                        <a href="/tags/QA/" target="_blank">
-                            <span class="chip bg-color">QA</span>
-                        </a>
-                        
-                        <a href="/tags/Evaluation-metrics/" target="_blank">
-                            <span class="chip bg-color">Evaluation metrics</span>
-                        </a>
-                        
+                        <span class="chip bg-color">无标签</span>
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                        <a href="/categories/Evaluation-metrics/" class="post-category" target="_blank">
-                            Evaluation metrics
-                        </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -440,7 +418,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-06
+                    2020-02-10
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -454,7 +432,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    365
+                    0
                 </div>
                 
 
@@ -477,12 +455,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。</p>
-<p>对于检索式chatbot来说，它的回复的内容都处于一个corpus中，当其收到用户输入的句子后，chatbot会在corpus中进行搜索并提取回答内容进行输出。</p>
-<p>对此，可以采用的检索标准有 <strong>recall@k</strong>，即给定 10 个候选响应（包含 1 个真实响应和 9 个干扰项噪声响应），让模型从中挑出 k 个最好的响应。</p>
-<p>如果模型选择出的 k 项回答中包含对应的正确响应，则该测试样本的结果将被标记为正确。自然，k 越大，那么这个任务就会更加简单。</p>
-<p>检索式chatbot不要求生成任何新的文本，只是从固定的集合中挑选一种回复而已，因而这种方式要求corpus的信息尽可能的大和丰富，这样才能精准地匹配用户内容，并且输出也较为高质量，因为语料库中的既定语句序列相对于生成式chatbot生成的序列更加自然和真实。</p>
-
+                
             </div>
             <hr />
 
@@ -516,9 +489,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Recall@k是什么》
+                    《Reinforcement Learning（4）：》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/recall-at-k/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/rl-4/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -559,7 +532,7 @@
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'recall-at-k/',
+        id: 'rl-4/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -580,53 +553,36 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/attention-1/">
+                <a href="/rl-4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="NLP中的Attention（1）">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Reinforcement Learning（4）：">
                         
-                        <span class="card-title">NLP中的Attention（1）</span>
+                        <span class="card-title">Reinforcement Learning（4）：</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            传统的seq2seq传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-10
+                            </span>
                         <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Attention/" class="post-category" target="_blank">
-                                    Attention
-                                </a>
-                            
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Attention/" target="_blank">
-                        <span class="chip bg-color">Attention</span>
-                    </a>
-                    
-                    <a href="/tags/Seq2seq/" target="_blank">
-                        <span class="chip bg-color">Seq2seq</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -637,33 +593,32 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/word2html/">
+                <a href="/rl-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Word文件转换为HTML">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="Reinforcement Learning（3）：Policy Gradient">
                         
-                        <span class="card-title">Word文件转换为HTML</span>
+                        <span class="card-title">Reinforcement Learning（3）：Policy Gradient</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的知识。
-而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。
-可以使用python的mammoth库将do
+                            前一篇文章讲了基础算法中的基于 value function 的方法。
+本文介绍另外一种算法，它试图直接优化 policy $\pi(s; \theta)$（ $\theta \in R^d$ 是参数，$\pi$ 通常是 actions 的
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category" target="_blank">
-                                    Python
+                            <a href="/categories/Reinforcement-Learning/" class="post-category" target="_blank">
+                                    Reinforcement Learning
                                 </a>
                             
                             
@@ -673,16 +628,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/Reinforcement-Learning/" target="_blank">
+                        <span class="chip bg-color">Reinforcement Learning</span>
                     </a>
                     
-                    <a href="/tags/mammoth/" target="_blank">
-                        <span class="chip bg-color">mammoth</span>
-                    </a>
-                    
-                    <a href="/tags/知识图谱/" target="_blank">
-                        <span class="chip bg-color">知识图谱</span>
+                    <a href="/tags/Policy-Gradient/" target="_blank">
+                        <span class="chip bg-color">Policy Gradient</span>
                     </a>
                     
                 </div>

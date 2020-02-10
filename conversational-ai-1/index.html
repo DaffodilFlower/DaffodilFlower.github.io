@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Recall@k是什么, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="Conversational AI（1）：概述, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。
-对于检索式chat">
+    <meta name="description" content="开发一个不仅能模拟人类对话也可以回答问题（从电影明星的新闻到爱因斯坦相对论），还能完成复杂任务（旅行计划）的conversational AI，是长久以来 AI 领域的一个目标。
+Conversational AI 和 Dialogue s">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Recall@k是什么 | 水仙花&#39;s blog</title>
+    <title>Conversational AI（1）：概述 | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +291,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Recall@k是什么
+                        Conversational AI（1）：概述
                     </div>
                 </div>
             </div>
@@ -416,10 +416,6 @@
                             <span class="chip bg-color">QA</span>
                         </a>
                         
-                        <a href="/tags/Evaluation-metrics/" target="_blank">
-                            <span class="chip bg-color">Evaluation metrics</span>
-                        </a>
-                        
                     </div>
                     
                 </div>
@@ -428,8 +424,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Evaluation-metrics/" class="post-category" target="_blank">
-                            Evaluation metrics
+                        <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                            Conversational AI
                         </a>
                         
                     </div>
@@ -440,7 +436,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-06
+                    2020-02-09
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -454,14 +450,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    365
+                    806
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
                 
@@ -477,11 +473,38 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。</p>
-<p>对于检索式chatbot来说，它的回复的内容都处于一个corpus中，当其收到用户输入的句子后，chatbot会在corpus中进行搜索并提取回答内容进行输出。</p>
-<p>对此，可以采用的检索标准有 <strong>recall@k</strong>，即给定 10 个候选响应（包含 1 个真实响应和 9 个干扰项噪声响应），让模型从中挑出 k 个最好的响应。</p>
-<p>如果模型选择出的 k 项回答中包含对应的正确响应，则该测试样本的结果将被标记为正确。自然，k 越大，那么这个任务就会更加简单。</p>
-<p>检索式chatbot不要求生成任何新的文本，只是从固定的集合中挑选一种回复而已，因而这种方式要求corpus的信息尽可能的大和丰富，这样才能精准地匹配用户内容，并且输出也较为高质量，因为语料库中的既定语句序列相对于生成式chatbot生成的序列更加自然和真实。</p>
+                <p>开发一个不仅能模拟人类对话也可以回答问题（从电影明星的新闻到爱因斯坦相对论），还能完成复杂任务（旅行计划）的conversational AI，是长久以来 AI 领域的一个目标。</p>
+<p>Conversational AI 和 Dialogue systems 在科学文献中通常可以<strong>互换</strong>。 如果非要说二者的区别的话，可能Dialogue systems更general，可能包含rule-based，也可能包含AI-based。而 conversational AI 仅指 AI-based。</p>
+<h2 id="Conversational-AI-的分类"><a href="#Conversational-AI-的分类" class="headerlink" title="Conversational AI 的分类"></a>Conversational AI 的分类</h2><p><img src="1.png" alt="图1"></p>
+<p>图1展示了一个关于做商务决策的人机对话过程。这个例子描述了 conversational AI 需要解决的任务：</p>
+<ul>
+<li>QA: agent 需要针对用户的问题，基于从很多数据源（web文档、知识库）中抽取到的丰富的知识，提供简单明了的回答，例如图1中的 Turns 3 到 5 </li>
+<li>Task completion: agent 需要完成用户给的任务，比如预定餐厅或会议安排，例如图1中的 Turns 6 到 7。</li>
+<li>Social chat: agent 需要 seamlessly and appropriately 和用户交谈，在图灵测试中表现的人一样，并且可以提供有用的推荐，如图1中到 turns 1 到 2。</li>
+</ul>
+<p>上述对话过程可以用不同类型bots来完成，这取决于 conversationl AI 是否帮助用户来完成具体的task：</p>
+<ul>
+<li>QA bots，也可以看作task-oriented bots</li>
+<li>Task-oriented bots，通常使用模块化系统实现，bot 访问外部数据库查询信息并完成任务，（Young et al., 2013; Tur and De Mori, 2011）。</li>
+<li>Social chatbots，也就是chitchat，通常使用非模块化系统实现，这是由于它的任务是通过与人们的情感联系成为人们的AI伙伴，而不是完成具体的任务，通常使用模仿人类对话的基于深度神经网络的 response generation 模型来实现（训练数据是大量的人与人对话数据）（Ritter et al., 2011; Sordoni et al., 2015b; Vinyals and Le, 2015; Shang et al., 2015）。 </li>
+</ul>
+<p>当然这些架构也不是一成不变的，近年来有研究人员开始利用知识（Ghazvininejad et al., 2018）或图片（Mostafazadeh et al., 2017）来实现chitchat，目的是为了使对话更有内容和趣味。</p>
+<ul>
+<li><p>Task-oriented bots的例子：现在一些流行的 personal assistants 如 Amazon Alexa, Apple Siri, Google Home 以及 Microsoft Cortana 都是 task-oriented bots，它们仅能处理一些相对简单的task，比如播报天气和requesting songs（点歌）。 </p>
+</li>
+<li><p>Chitchat dialogue bot 的例子： Microsoft XiaoIce。</p>
+</li>
+</ul>
+<h2 id="如何构建bot"><a href="#如何构建bot" class="headerlink" title="如何构建bot"></a>如何构建bot</h2><p>构建一个bot来完成图1这种复杂的任务不是一个简单的事情，面临信息检索和NLP中的很多挑战。</p>
+<p>一个典型的 task-oriented dialogue agent 包含四个模块，如图2中的上半部分所示：</p>
+<p><img src="2.png" alt="图2"></p>
+<ul>
+<li>NLU模块识别用户意图和提取相关信息</li>
+<li>State tracker模块跟踪对话状态（到目前为止对话中的重要信息）</li>
+<li>Dialogue policy模块基于current state选择下一个action</li>
+<li>NLG模块把 agent actions 转换为自然语言的response</li>
+</ul>
+<p>近年来有个趋势是构建 fully data driven 的系统，把上面的几个模块都统一为深度神经网络，直接把用户输入 x map 为输入 y ，如图2的下半部分所示。</p>
 
             </div>
             <hr />
@@ -516,9 +539,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Recall@k是什么》
+                    《Conversational AI（1）：概述》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/recall-at-k/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/conversational-ai-1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -559,7 +582,7 @@
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'recall-at-k/',
+        id: 'conversational-ai-1/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -584,31 +607,32 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/attention-1/">
+                <a href="/rl-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="NLP中的Attention（1）">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Reinforcement Learning（1）：基础">
                         
-                        <span class="card-title">NLP中的Attention（1）</span>
+                        <span class="card-title">Reinforcement Learning（1）：基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            传统的seq2seq传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为
+                            Reinforcement learning（RL）是一种 learning paradigm ，一个智能的agent 通过与最开始不了解的 environment 交互并学习作出最优决策。
+与supervised learning 相比，
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-10
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Attention/" class="post-category" target="_blank">
-                                    Attention
+                            <a href="/categories/Reinforcement-Learning/" class="post-category" target="_blank">
+                                    Reinforcement Learning
                                 </a>
                             
                             
@@ -618,12 +642,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Attention/" target="_blank">
-                        <span class="chip bg-color">Attention</span>
-                    </a>
-                    
-                    <a href="/tags/Seq2seq/" target="_blank">
-                        <span class="chip bg-color">Seq2seq</span>
+                    <a href="/tags/Reinforcement-Learning/" target="_blank">
+                        <span class="chip bg-color">Reinforcement Learning</span>
                     </a>
                     
                 </div>
@@ -637,33 +657,32 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/word2html/">
+                <a href="/conversational-ai-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Word文件转换为HTML">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Conversational AI（2）：Approaches的变迁">
                         
-                        <span class="card-title">Word文件转换为HTML</span>
+                        <span class="card-title">Conversational AI（2）：Approaches的变迁</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的知识。
-而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。
-可以使用python的mammoth库将do
+                            Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。
+NLP applications 在使用语言知识的层面上区别于其他数据处理系统，包括 phonol
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category" target="_blank">
-                                    Python
+                            <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                                    Conversational AI
                                 </a>
                             
                             
@@ -673,16 +692,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/chatbot/" target="_blank">
+                        <span class="chip bg-color">chatbot</span>
                     </a>
                     
-                    <a href="/tags/mammoth/" target="_blank">
-                        <span class="chip bg-color">mammoth</span>
+                    <a href="/tags/QA/" target="_blank">
+                        <span class="chip bg-color">QA</span>
                     </a>
                     
-                    <a href="/tags/知识图谱/" target="_blank">
-                        <span class="chip bg-color">知识图谱</span>
+                    <a href="/tags/Neural-approaches/" target="_blank">
+                        <span class="chip bg-color">Neural approaches</span>
                     </a>
                     
                 </div>

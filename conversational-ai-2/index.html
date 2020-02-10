@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Recall@k是什么, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="Conversational AI（2）：Approaches的变迁, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。
-对于检索式chat">
+    <meta name="description" content="Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。
+NLP applications 在使用语言知识的层面上区别于其他数据处理系统，包括 phonol">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Recall@k是什么 | 水仙花&#39;s blog</title>
+    <title>Conversational AI（2）：Approaches的变迁 | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +291,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Recall@k是什么
+                        Conversational AI（2）：Approaches的变迁
                     </div>
                 </div>
             </div>
@@ -416,8 +416,8 @@
                             <span class="chip bg-color">QA</span>
                         </a>
                         
-                        <a href="/tags/Evaluation-metrics/" target="_blank">
-                            <span class="chip bg-color">Evaluation metrics</span>
+                        <a href="/tags/Neural-approaches/" target="_blank">
+                            <span class="chip bg-color">Neural approaches</span>
                         </a>
                         
                     </div>
@@ -428,8 +428,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Evaluation-metrics/" class="post-category" target="_blank">
-                            Evaluation metrics
+                        <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                            Conversational AI
                         </a>
                         
                     </div>
@@ -440,7 +440,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-06
+                    2020-02-08
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -454,14 +454,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    365
+                    592
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -477,11 +477,33 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>通常情况下，用户评判一个chatbot或者QA系统的性能是否理想时，都会将该系统是否准确地完成了用户的任务作为首要的参考条件，例如，在给定的对话中是否解决客户支持问题，但是在QA领域并没有一个合适的标准来衡量模型的性能。</p>
-<p>对于检索式chatbot来说，它的回复的内容都处于一个corpus中，当其收到用户输入的句子后，chatbot会在corpus中进行搜索并提取回答内容进行输出。</p>
-<p>对此，可以采用的检索标准有 <strong>recall@k</strong>，即给定 10 个候选响应（包含 1 个真实响应和 9 个干扰项噪声响应），让模型从中挑出 k 个最好的响应。</p>
-<p>如果模型选择出的 k 项回答中包含对应的正确响应，则该测试样本的结果将被标记为正确。自然，k 越大，那么这个任务就会更加简单。</p>
-<p>检索式chatbot不要求生成任何新的文本，只是从固定的集合中挑选一种回复而已，因而这种方式要求corpus的信息尽可能的大和丰富，这样才能精准地匹配用户内容，并且输出也较为高质量，因为语料库中的既定语句序列相对于生成式chatbot生成的序列更加自然和真实。</p>
+                <p>Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。</p>
+<p>NLP applications <strong>在使用语言知识的层面上</strong>区别于其他数据处理系统，包括 phonology, morphology, syntax, semantics and discourse（Jurafsky and Martin, 2009）。 </p>
+<p>历史上，NLP的领域如图1所示：</p>
+<p><img src="1.png" alt="图1"></p>
+<p>图1中这些 task 通过把自然语言句子映射（或生成）一系列的人工定义的、无歧义的、symbolic representations（Part-Of-Speech, tags, context free grammar, first-order predicate calculus等），在不同的层面分解（或实现）自然语言的歧义（或多样性）</p>
+<p>随着 data-driven 和 statistical approaches 的崛起，图1中的这些components 被用作 engineered features 的丰富来源，作为机器学习模型的输入（Manning et al., 2014）。</p>
+<p><strong>Neural approaches 不依赖任何人工定义的symbolic representations，在一个task-specific neural space中学习，在这个space中 task-specific knowledge 通过 low-dimensional continuous vectors 隐式的表示为 semantic **concepts</strong>。</p>
+<p><img src="2.png" alt="图2"></p>
+<p>如图2所示，NLP tasks 的 neural methods（如 machine reading comprehension and dialogue）<strong>通常包含三步</strong>：</p>
+<ul>
+<li>Encoding symbolic user input and knowledge into their neural semantic representations, where semantically related or similar concepts are represented as vectors that are close to each other; </li>
+<li>Reasoning in the neural space to generate a system response based on input and system state; </li>
+<li>Decoding the system response into a natural language output in a symbolic space. </li>
+</ul>
+<p>Encoding, reasoning 和 decoding 都使用不同架构的神经网络实现，可能由深度神经网络堆叠，以 end-to-end 的方式通过反向传播训练。</p>
+<p>End-to-end training 导致终端应用和神经网络架构之间紧密的联系，减少了对传统NLP component boundaries（如morphological analysis and parsing）的需求，显著的平缓了图1中的技术栈，减少了对 feature engineering 的需求，关注点转移到针对终端应用仔细的调整神经网络的复杂架构</p>
+<p><strong>虽然 neural approaches 在其他 AI tasks 被广泛采用，但是在 conversational AI 却有点慢</strong>。仅仅最近才开始注意到 neural approaches 在产生了一些 state-of-the-art results。</p>
+<p>也有一些 <strong>hybrid methods</strong> 混合了 neural and symbolic approaches 的力量：</p>
+<ul>
+<li>Mou et al., 2016</li>
+<li>Liang et al., 2016</li>
+</ul>
+<p>如图2总结的：</p>
+<ul>
+<li>Neural approaches 可以被 end-to-end 方式训练，而且对于paraphrase alternations（释义的变换） 比较健壮，但是在执行效率和可解释性方面比较弱。</li>
+<li>Symbolic approaches 训练比较困难，对 paraphrase alternations 敏感，但是却可解释性和执行效率比较好。</li>
+</ul>
 
             </div>
             <hr />
@@ -516,9 +538,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Recall@k是什么》
+                    《Conversational AI（2）：Approaches的变迁》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/recall-at-k/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/conversational-ai-2/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -559,7 +581,7 @@
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'recall-at-k/',
+        id: 'conversational-ai-2/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -584,6 +606,60 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/conversational-ai-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Conversational AI（1）：概述">
+                        
+                        <span class="card-title">Conversational AI（1）：概述</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            开发一个不仅能模拟人类对话也可以回答问题（从电影明星的新闻到爱因斯坦相对论），还能完成复杂任务（旅行计划）的conversational AI，是长久以来 AI 领域的一个目标。
+Conversational AI 和 Dialogue s
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                                    Conversational AI
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/chatbot/" target="_blank">
+                        <span class="chip bg-color">chatbot</span>
+                    </a>
+                    
+                    <a href="/tags/QA/" target="_blank">
+                        <span class="chip bg-color">QA</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/attention-1/">
                     <div class="card-image">
                         
@@ -600,9 +676,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -624,65 +700,6 @@
                     
                     <a href="/tags/Seq2seq/" target="_blank">
                         <span class="chip bg-color">Seq2seq</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/word2html/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Word文件转换为HTML">
-                        
-                        <span class="card-title">Word文件转换为HTML</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            在构建知识图谱的过程中，word文件都是很常见的业务数据的保存形式。Word中的文本、表格可能包含重要的知识。
-而自然语言处理工具无法解析word中的数据，因此需要把word文件转换为文本文件。
-可以使用python的mammoth库将do
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Python/" class="post-category" target="_blank">
-                                    Python
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                    <a href="/tags/mammoth/" target="_blank">
-                        <span class="chip bg-color">mammoth</span>
-                    </a>
-                    
-                    <a href="/tags/知识图谱/" target="_blank">
-                        <span class="chip bg-color">知识图谱</span>
                     </a>
                     
                 </div>

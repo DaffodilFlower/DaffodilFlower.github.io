@@ -4,11 +4,159 @@
   
     
     <entry>
+      <title>Reinforcement Learning（4）：</title>
+      <link href="/rl-4/"/>
+      <url>/rl-4/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Reinforcement Learning（3）：Policy Gradient</title>
+      <link href="/rl-3/"/>
+      <url>/rl-3/</url>
+      
+        <content type="html"><![CDATA[<p>前一篇文章讲了基础算法中的基于 value function 的方法。</p><p>本文介绍另外一种算法，它试图直接优化 policy $\pi(s; \theta)$（ $\theta \in R^d$ 是参数，$\pi$ <strong>通常是 actions 的一个分布</strong>），而不是学习 Q-function，也就是 Policy Gradient。</p><h2 id="Policy-Gradient"><a href="#Policy-Gradient" class="headerlink" title="Policy Gradient"></a>Policy Gradient</h2><p>给定任意 $\theta$，policy 自然的通过 average long-term reward 来评估，<strong>average long-term reward</strong> 通过长度为 H 的 trajectory $\tau = (s_1, a_1, r_1, … , s_H, a_H, r_H)$ 来获得:</p><p>$$R(\theta) = E[\sum_{t=1}^{H} \gamma^{t−1} r_t | a_t \sim \pi(s_t; \theta)] \tag{4}$$</p><p><strong>注意这里是average的reward，因此还要乘以这个 trajectory 被 sample 的概率，也就是表示为期望的形式</strong>，具体来说，设 $R(\tau) = \sum_{t=1}^{H} \gamma^{t−1} r_t$ 表示某个 trajectory $\tau$ 的回报，$P(\tau| \theta)$ 表示 trajectory $\tau$ 出现的概率，假设我们来玩这个游戏，每个 $\tau$ 有 $P(\tau| \theta)$ 的概率被 sample，那么 <strong>average long-term reward</strong> 可以表示为：</p><p>$$R(\theta) = E[R(\tau) | a_t \sim \pi(s_t; \theta)] = \sum_{\tau} P(\tau|\theta)R(\tau) \tag{5}$$<br>　　　　<br><strong>Policy gradient 的目标就是找到最优参数 $\theta$ ，使得 average long-term reward $R(\theta)$最大</strong>，因此是一个优化问题，可以用梯度上升法来求解：</p><p>$$\theta \leftarrow \theta + \nabla_\theta R(\theta)\tag{6}$$</p><p>由公式5，且 $R(\tau)$ 与 $\theta$ 无关，看作黑盒:</p><p>$$\nabla_\theta R(\theta) = \nabla \sum_\tau R(\tau) P(\tau | \theta)= \sum_\tau R(\tau) \nabla P(\tau | \theta) = \sum_\tau R(\tau) P(\tau | \theta) \frac{\nabla P(\tau | \theta)}{P(\tau | \theta)} \tag{7}$$</p><p>由一个 trick：$\frac{d \log f(x)}{dx}= \frac{d f(x)/f(x)}{dx}$</p><p>因此：</p><p>$$\nabla_\theta R(\theta) = \sum_\tau R(\tau) P(\tau | \theta)  \nabla \log P(\tau | \theta) = \sum_\tau P(\tau | \theta)  [R(\tau) \nabla_\theta \log P(\tau | \theta)] \tag{8}$$</p><p>因此 policy gradient 变成了求 $R(\tau) \nabla \log P(\tau | \theta)$ 的期望也就是均值，因此可以 sample 出 N 个样本求均值来逼近公式8。使用 policy $\pi(a_t | s_t;\theta)$ 来玩这个游戏 N 次，获得 N 个 trajectory $\{ \tau^1,\tau^2,…,\tau^N \}$，因此：</p><p>$$\nabla_\theta R(\theta) \approx  \frac{1}{N} \sum_{n=1}^N R(\tau^n) \nabla_\theta \log P(\tau | \theta) \tag{9}$$</p><p>现在问题变成了如何求：$\nabla \log P(\tau | \theta)$</p><p>注意到第 n 个 trajectory 表示为：$\tau = (s_1^n, a_1^n, r_1^n, … , s_{H_n}^n, a_{H_n}^n, r_{H_n}^n)$，长度为 $H_n$ ，因此这个 trajectory 被 sample 出的概率：</p><p>$$\begin{equation}\begin{split} P(\tau | \theta) &amp;= P(s_1^n) \pi(a_1^n|s_1^n;\theta) P(s_2^n|s_1^n,a_1^n) \pi(a_2^n|s_2^n;\theta) P(s_3^n|s_2^n,a_2^n) … \\ &amp;= P(s_1^n) \prod_{t=1}^{H_n} \pi(a_t^n|s_t^n;\theta) P(r_t^n,s_{t+1}^n | s_t^n,a_t^n) \end{split}\end{equation} \tag{10}$$</p><p>公式10两边取log得：</p><p>$$\log P(\tau | \theta) = \log P(s_1^n) \sum_{t=1}^{H_n} \log \pi(a_t|s_t^n;\theta) + \log P(r_t^n,s_{t+1}^n | s_t^n,a_t^n) \tag{11}$$</p><p>公式11两边对 $\theta$ 求导，并忽略掉与 $\theta$ 无关的部分：</p><p>$$\nabla_\theta \log P(\tau | \theta) = \sum_{t=1}^H_n \nabla_\theta \log \pi(a_t^n|s_t^n;\theta) \tag{12}$$</p><p>代入公式9，其中 N 代表多少个 trajectory，${H_n}$ 代表某个trajectory的长度：</p><p>$$\begin{equation}\begin{split} \nabla_\theta R(\theta) &amp;\approx  \frac{1}{N} \sum_{n=1}^N R(\tau^n) \nabla \log P(\tau | \theta) \\ &amp;= \frac{1}{N} \sum_{n=1}^N R(\tau^n) \sum_{t=1}^{H_n} \nabla \log \pi(a_t^n|s_t^n;\theta) \\ &amp;= \frac{1}{N} \sum_{n=1}^N \sum_{t=1}^{H_n} R(\tau^n)  \nabla \log \pi(a_t^n|s_t^n;\theta) \end{split}\end{equation} \tag{13}$$</p><p><strong>公式13的意义是</strong> 如果 actor 在 trajectory $\tau^n$ 的时候，看见 state $s_t^n$ 并采用 action $a_t^n$：</p><ul><li>如果整个 trajectory 的 reward $R(\tau^n) &gt; 0$，则调整 $\theta$ 以增加 $\pi(a_t^n|s_t^n;\theta)$ 的概率</li><li>如果整个 trajectory 的 reward $R(\tau^n) &lt; 0$，则调整 $\theta$ 以减少 $\pi(a_t^n|s_t^n;\theta)$ 的概率</li></ul><p><strong>公式13会导致一个问题，在同一个 trajectory 里面，每次选取的action $a_t$ 都用同一个 weight 也就是 $R(\tau^n)$ 来指导</strong>。</p><p><strong>理想状态是对于每个 action 用不同的 weight 来指导，把这个 action 执行以后得到的 reward</strong> 而不是把整场游戏得到的 reward 作为 weight（<strong>也就是抛弃 action 执行之前的reward</strong>），因此公式9可以改进为：</p><p>$$\begin{equation}\begin{split} \nabla_\theta R(\theta)  &amp; \approx \frac{1}{N} \sum_{n=1}^N \sum_{t=1}^{H_n} R(\tau^n)  \nabla \log \pi(a_t^n|s_t^n;\theta) \\ &amp;=  \frac{1}{N} \sum_{n=1}^N \sum_{t=1}^{H_n} [\sum_{t’=t}^{H_n} r_{t’}^n]  \nabla \log \pi(a_t^n|s_t^n;\theta)   \end{split}\end{equation} \tag{14}$$</p><p><strong>如果再把未来的 reward 进行 discount</strong>（$\gamma &lt; 1$），那么公式13成为：</p><p>$$\begin{equation}\begin{split} \nabla_\theta R(\theta)  &amp; \approx \frac{1}{N} \sum_{n=1}^N \sum_{t=1}^{H_n} R(\tau^n)  \nabla \log \pi(a_t^n|s_t^n;\theta) \\ &amp;=  \frac{1}{N} \sum_{n=1}^N \sum_{t=1}^{H_n} [\sum_{t’=t}^{H_n} \gamma^{t’-t}r_{t’}^n]  \nabla \log \pi(a_t^n|s_t^n;\theta) \end{split}\end{equation} \tag{15}$$</p><h2 id="Add-baseline"><a href="#Add-baseline" class="headerlink" title="Add baseline"></a>Add baseline</h2><p>现在的一个问题是，公式13中的 $R(\tau^n)$ 有可能一直是正的，这样并不一定会产生问题，因为正的程度有大有小，如：</p><p><img src="1.png" alt="图1"></p><p>图1 中的 b 的 $R(\tau^n)$ 比较小，因此调整 $\theta$ 使 b 被 sample 的概率 $\pi(b|s_t^n;\theta)$ 上升得小一些</p><p>但是在图2这种情况下会有问题：</p><p><img src="2.png" alt="图1"></p><p>在某一个state某些action 可能一直没有被sample到，其他 action 的概率上升，那么 a 的概率就下降，因为$\pi(a_t^n|s_t^n;\theta)$ 是一个概率分布，满足归一化！</p><p><strong>导致 a 不是一个不好的action，只是因为没有被sample到，就被降低了概率，躺输</strong>！</p><p><strong>因此需要把图2中不那么好的（上升概率比较小的）action b 变为下降，那么归一化的角度，a 的概率就不会下降，不会导致图2的问题</strong>。</p><p>如何实现？方法是在公式13、14、15中加一个baseline：</p><p><img src="3.png" alt="图3"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Reinforcement Learning </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Reinforcement Learning </tag>
+            
+            <tag> Policy Gradient </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Reinforcement Learning（2）：Q-leanring</title>
+      <link href="/rl-2/"/>
+      <url>/rl-2/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Q-learning"><a href="#Q-learning" class="headerlink" title="Q-learning"></a>Q-learning</h2><p>Q-learning 基于这个观察：如果 optimal Q-function 可用，则optimal policy 可以被直接获得。</p><p>具体来说， optimal policy 能够被公式1决定：</p><p>$$\pi^{\star}(s) = argmax_a Q^{\star}(s, a) \tag{1}$$</p><p>这种 RL 算法大类是学习 $Q^*(s, a)$，也就是基于 value function 的方法。</p><p>在实践中，如果问题比较大型，把 $Q(s, a)$ 表示为一个表格，表格的一个 entry 存储每个不同的 $(s, a)$ 比较 expensive，比如，围棋的 states 数量大于 $2 × 10^{170}$（Tromp and Farneback, 2006）。</p><p><strong>因此，通常使用 compact forms 来表示 Q</strong>。特别的，假设 Q-function 有预先定义的参数形式，以 向量 $\theta \in R^d$ 作为参数，比如用 linear approximation：<br>$$Q(s, a; \theta) = \phi(s, a)^T \theta$$ </p><p>其中 $\phi(s, a)$ 是一个表示 state-action pair $(s, a)$ 的d维人工编码的 feature vector，$\theta$ 是对应的 coefficient vector，从数据中学习得到。</p><p>总的来说，$Q(s, a; \theta)$ 可能采用不同的参数形式，如在Deep Q-Network （DQN）中，$Q(s, a; \theta)$ 采用深度神经网络的形式，如： </p><ul><li>Multi-layer perceptrons</li><li>CNN（Tesauro, 1995; Mnih et al., 2015）</li><li>RNN （Hausknecht and Stone, 2015; Li et al., 2015）</li></ul><p>此外，也可以把 Q-function 表达为 <strong>non-parametric</strong> 形式，如：</p><ul><li>Decision trees（Ernst et al., 2005）</li><li>Gaussian processes （Engel et al.,2005）</li></ul><p>为了学习 Q-function，通过如下的更新规则来修改参数$\theta$，<strong>在观察到一个 state transition $(s, a, r, s’)$ 之后</strong>：</p><p>$$θ \leftarrow θ + \alpha (\underbrace{r + \gamma \max_{a’} Q(s’, a’; \theta) − Q(s, a; \theta)}_{\text{temporal difference}}) \nabla_{\theta} Q(s, a; \theta). \tag{2}$$</p><p>上述的更新就是 Q-learning（Watkins, 1989），产生 $\theta$ 的一个小变化， 通过 step-size parameter $\alpha$ 来控制，以及通过 temporal difference（Sutton, 1988）来计算。</p><p>但是在实践中 Q-learning 相当不稳定，并且在达到好的 $Q^*$ 近似之前需要很多 samples 。</p><h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><p>下面两个改进比较有用。</p><ul><li><p>第一个是 experience replay （Lin, 1992），由 Mnih et al. 2015 流行开来。它不是使用  observed transition 一次性的使用公式2来更新 $\theta$，而是将其存储到一个 replay buffer 中，然后周期性的从中 sample 出  transitions 来执行 Q-learning 的 updates。这种方式下，每个 transition 能够被多次使用，因此提高了 sample 的效率。此外，这个方法防止了当更新参数 $\theta$ 时数据分布变化随时间过快，使学习更稳定。</p></li><li><p>第二个方法是用两个网络实现（Mnih et al., 2015），这是一种 more general fitted value iteration algorithm （Munos and Szepesvari, 2008） 的例子。<strong>Learner 维护一个 extra copy of the Q-function，叫做 target network，以 $θ_{target}$ 作为参数。学习过程中，$θ_{target}$ 是固定的</strong>，用来计算 temporal difference 以更新 $\theta$。特别的，公式2变成了：</p><p>  $$θ \leftarrow θ + \alpha (\underbrace{r + \gamma \max_{a’} Q(s’, a’; \theta_{target}) − Q(s, a; \theta)}_{\text{temporal difference}}) \nabla_{\theta} Q(s, a; \theta) \tag{3}$$</p><p>  $θ_{target}$ 周期性的被更新为 $\theta$，这个过程一直持续。</p></li></ul><p>近期还有一些对 basic Q-learning 的改进，如： </p><ul><li>Dueling Q-network （Wang et al., 2016）</li><li>Double Q-learning （van Hasselt et al., 2016）</li><li>A provably convergent SBEED algorithm（Dai et al., 2018b）</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Reinforcement Learning </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Reinforcement Learning </tag>
+            
+            <tag> Q-leanring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Reinforcement Learning（1）：基础</title>
+      <link href="/rl-1/"/>
+      <url>/rl-1/</url>
+      
+        <content type="html"><![CDATA[<p>Reinforcement learning（RL）是一种 learning paradigm ，一个智能的agent 通过与最开始不了解的 environment 交互并学习作出最优决策。</p><p>与supervised learning 相比，RL 是没有老师的学习（即没有supervisory labels），这是它的一个独特挑战 </p><p><img src="1.png" alt></p><p>如图所示，agent 与 environment 的交互被建模为 discrete-time Markov decision process（MDP, Puterman, 1994)，被描述为五元组：</p><p>$$M = \{ S,A,P,R,\gamma\}$$</p><ul><li>$S$ 是 environment 处于的 states 集合，可能无限</li><li>$A$ 是 actions 集合，agent 在某个 state 采用集合中的action，可能无限</li><li>$P(s’|s, a)$ 是 environment 在 state s 时采用 action a 到一个新的 state s’ 的transition probability</li><li>$R(s, a)$ 是 agent 在 state s 采用 action a 直接收到的average reward</li><li>$\gamma \in (0, 1]$ 是 discount factor.</li></ul><p>agent 与 environment 的交互可以被记录为一个 trajectory $(s_1, a_1, r_1, . . .)$，通过如下步骤生成，在 step $t = 1, 2, …,$：</p><ul><li>agent 观察 environment 的 current state $s_t \in S$，然后采用action $a_t \in A$</li><li>根据 transition probabilities $P(·|s_t, a_t)$， environment 转移到下一个 state $s_{t+1}$</li><li>与转移相关的是 immediate reward $r_t \in R$， 它的平均是 $R(s_t, a_t)$</li></ul><p>忽略下标，每个 step 产生一个 tuple $(s, a, r, s’)$，<strong>叫做一个 transition</strong>。 </p><p><strong>RL agent 的目标是</strong>通过选取最优的 action 来最大化 long-term reward。它的 policy，记作 $\pi$，<strong>可以是 deterministic 或者 stochastic</strong>。不论是哪种policy， 使用 $a \sim \pi(s)$ 来表示 state $s$ 下按照 $\pi$ 来选取 action。</p><p>给定一个 policy $\pi$，<strong>一个 state $s$ 的 value</strong> 是从这个 state 起的 average discounted long-term reward：<br>$$V_{\pi}(s) := E[r_1 + {\gamma}r_2 + {\gamma_2}r_3 + … |s_1 = s, a_i \sim \pi (s_i), \forall i \geq 1].$$</p><p>我们感兴趣的是优化 policy 使得 $V_{\pi}$ 对于所有的 states 最大化。</p><p>设 $\pi^\star$ 表示 optimal policy， $V^\star$ 表示最优的 policy 对应的 value function（或 optimal value function）。</p><p>在很多情况下，使用另一个形式的 value function 也就是 Q-function 更为方便：<br>$$Q_{\pi}(s, a) := E[r_1 + {\gamma}r_2 + {\gamma_2}r_3 + · · · |s_1 = s, a_1 = a, a_i \sim _{\pi}(s_i), \forall i &gt; 1]$$</p><p>它度量在 state s 首次选择 a 之后按照 policy $\pi$ 来选择 action 的average discounted long-term reward。</p><p>Optimal Q-function 对应的 optimal policy 记作 $Q^*$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Reinforcement Learning </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Reinforcement Learning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Conversational AI（1）：概述</title>
+      <link href="/conversational-ai-1/"/>
+      <url>/conversational-ai-1/</url>
+      
+        <content type="html"><![CDATA[<p>开发一个不仅能模拟人类对话也可以回答问题（从电影明星的新闻到爱因斯坦相对论），还能完成复杂任务（旅行计划）的conversational AI，是长久以来 AI 领域的一个目标。</p><p>Conversational AI 和 Dialogue systems 在科学文献中通常可以<strong>互换</strong>。 如果非要说二者的区别的话，可能Dialogue systems更general，可能包含rule-based，也可能包含AI-based。而 conversational AI 仅指 AI-based。</p><h2 id="Conversational-AI-的分类"><a href="#Conversational-AI-的分类" class="headerlink" title="Conversational AI 的分类"></a>Conversational AI 的分类</h2><p><img src="1.png" alt="图1"></p><p>图1展示了一个关于做商务决策的人机对话过程。这个例子描述了 conversational AI 需要解决的任务：</p><ul><li>QA: agent 需要针对用户的问题，基于从很多数据源（web文档、知识库）中抽取到的丰富的知识，提供简单明了的回答，例如图1中的 Turns 3 到 5 </li><li>Task completion: agent 需要完成用户给的任务，比如预定餐厅或会议安排，例如图1中的 Turns 6 到 7。</li><li>Social chat: agent 需要 seamlessly and appropriately 和用户交谈，在图灵测试中表现的人一样，并且可以提供有用的推荐，如图1中到 turns 1 到 2。</li></ul><p>上述对话过程可以用不同类型bots来完成，这取决于 conversationl AI 是否帮助用户来完成具体的task：</p><ul><li>QA bots，也可以看作task-oriented bots</li><li>Task-oriented bots，通常使用模块化系统实现，bot 访问外部数据库查询信息并完成任务，（Young et al., 2013; Tur and De Mori, 2011）。</li><li>Social chatbots，也就是chitchat，通常使用非模块化系统实现，这是由于它的任务是通过与人们的情感联系成为人们的AI伙伴，而不是完成具体的任务，通常使用模仿人类对话的基于深度神经网络的 response generation 模型来实现（训练数据是大量的人与人对话数据）（Ritter et al., 2011; Sordoni et al., 2015b; Vinyals and Le, 2015; Shang et al., 2015）。 </li></ul><p>当然这些架构也不是一成不变的，近年来有研究人员开始利用知识（Ghazvininejad et al., 2018）或图片（Mostafazadeh et al., 2017）来实现chitchat，目的是为了使对话更有内容和趣味。</p><ul><li><p>Task-oriented bots的例子：现在一些流行的 personal assistants 如 Amazon Alexa, Apple Siri, Google Home 以及 Microsoft Cortana 都是 task-oriented bots，它们仅能处理一些相对简单的task，比如播报天气和requesting songs（点歌）。 </p></li><li><p>Chitchat dialogue bot 的例子： Microsoft XiaoIce。</p></li></ul><h2 id="如何构建bot"><a href="#如何构建bot" class="headerlink" title="如何构建bot"></a>如何构建bot</h2><p>构建一个bot来完成图1这种复杂的任务不是一个简单的事情，面临信息检索和NLP中的很多挑战。</p><p>一个典型的 task-oriented dialogue agent 包含四个模块，如图2中的上半部分所示：</p><p><img src="2.png" alt="图2"></p><ul><li>NLU模块识别用户意图和提取相关信息</li><li>State tracker模块跟踪对话状态（到目前为止对话中的重要信息）</li><li>Dialogue policy模块基于current state选择下一个action</li><li>NLG模块把 agent actions 转换为自然语言的response</li></ul><p>近年来有个趋势是构建 fully data driven 的系统，把上面的几个模块都统一为深度神经网络，直接把用户输入 x map 为输入 y ，如图2的下半部分所示。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Conversational AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> chatbot </tag>
+            
+            <tag> QA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Conversational AI（2）：Approaches的变迁</title>
+      <link href="/conversational-ai-2/"/>
+      <url>/conversational-ai-2/</url>
+      
+        <content type="html"><![CDATA[<p>Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。</p><p>NLP applications <strong>在使用语言知识的层面上</strong>区别于其他数据处理系统，包括 phonology, morphology, syntax, semantics and discourse（Jurafsky and Martin, 2009）。 </p><p>历史上，NLP的领域如图1所示：</p><p><img src="1.png" alt="图1"></p><p>图1中这些 task 通过把自然语言句子映射（或生成）一系列的人工定义的、无歧义的、symbolic representations（Part-Of-Speech, tags, context free grammar, first-order predicate calculus等），在不同的层面分解（或实现）自然语言的歧义（或多样性）</p><p>随着 data-driven 和 statistical approaches 的崛起，图1中的这些components 被用作 engineered features 的丰富来源，作为机器学习模型的输入（Manning et al., 2014）。</p><p><strong>Neural approaches 不依赖任何人工定义的symbolic representations，在一个task-specific neural space中学习，在这个space中 task-specific knowledge 通过 low-dimensional continuous vectors 隐式的表示为 semantic **concepts</strong>。</p><p><img src="2.png" alt="图2"></p><p>如图2所示，NLP tasks 的 neural methods（如 machine reading comprehension and dialogue）<strong>通常包含三步</strong>：</p><ul><li>Encoding symbolic user input and knowledge into their neural semantic representations, where semantically related or similar concepts are represented as vectors that are close to each other; </li><li>Reasoning in the neural space to generate a system response based on input and system state; </li><li>Decoding the system response into a natural language output in a symbolic space. </li></ul><p>Encoding, reasoning 和 decoding 都使用不同架构的神经网络实现，可能由深度神经网络堆叠，以 end-to-end 的方式通过反向传播训练。</p><p>End-to-end training 导致终端应用和神经网络架构之间紧密的联系，减少了对传统NLP component boundaries（如morphological analysis and parsing）的需求，显著的平缓了图1中的技术栈，减少了对 feature engineering 的需求，关注点转移到针对终端应用仔细的调整神经网络的复杂架构</p><p><strong>虽然 neural approaches 在其他 AI tasks 被广泛采用，但是在 conversational AI 却有点慢</strong>。仅仅最近才开始注意到 neural approaches 在产生了一些 state-of-the-art results。</p><p>也有一些 <strong>hybrid methods</strong> 混合了 neural and symbolic approaches 的力量：</p><ul><li>Mou et al., 2016</li><li>Liang et al., 2016</li></ul><p>如图2总结的：</p><ul><li>Neural approaches 可以被 end-to-end 方式训练，而且对于paraphrase alternations（释义的变换） 比较健壮，但是在执行效率和可解释性方面比较弱。</li><li>Symbolic approaches 训练比较困难，对 paraphrase alternations 敏感，但是却可解释性和执行效率比较好。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Conversational AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> chatbot </tag>
+            
+            <tag> QA </tag>
+            
+            <tag> Neural approaches </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>NLP中的Attention（1）</title>
       <link href="/attention-1/"/>
       <url>/attention-1/</url>
       
-        <content type="html"><![CDATA[<h2 id="传统的seq2seq"><a href="#传统的seq2seq" class="headerlink" title="传统的seq2seq"></a>传统的seq2seq</h2><p>传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为可观的效果，却会成为较长的句子效果不好。</p><p><img src="1.png" alt></p><h2 id="Attention及其优点"><a href="#Attention及其优点" class="headerlink" title="Attention及其优点"></a>Attention及其优点</h2><p>Attention最初是在计算机视觉领域被提出的，在NLP领域，首先提出的是《NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE》</p><p><strong>Attention 的核心优点</strong>就是通过在decode阶段对<strong>source sequence中相关的部分给予attention</strong>，注意这里是要<strong>相关的才予以attention</strong>。</p><p>Attention 机制提供了一种新的方法，可以使 decoder 对于 source sequence 中的信息选择重点进行记忆，也就是把encoding过程中的所有hidden states作为一个pool，有点像random access memory，在decode的时候可以按需retrieve。</p><p><strong>这也符合人类的阅读习惯，择其善者而用之</strong>，比如人在翻译的英语句子时候，不是先把一个长句熟记于心后再开始闭着眼睛翻译，通常的做法是通读全文，把握整体，然后一边查看原文一边翻译，Attention就是这样一个过程，有点像传统机器翻译中的语料对齐的过程，即找出哪部分原文对应哪部分译文，而NMT中的attention是隐式的对齐。</p><h2 id="Attention的步骤"><a href="#Attention的步骤" class="headerlink" title="Attention的步骤"></a>Attention的步骤</h2><p>那么 attention 这种重大改进是如何做到的呢？Attention在每个decode的time step都会进行计算，主要包含了如下四个步骤，如图所示：</p><p><img src="2.png" alt></p><p>1) <strong>计算 attention weights</strong></p><p>Attention weights是通过当前decoder的hidden state $h_t$和source sequence每一个的 hiddden state $\overline{h}_s$ 进行计算，计算方法如公式(1):</p><p>$$\alpha _{st} = \frac{exp(score(\overline{h}_s,h_t))}{\sum_{s’}exp(score(\overline{h}_s’,h_t))} \tag{1}$$</p><p>关于 score 函数的选择有很多，如下所示：</p><p><img src="3.png" alt></p><p>代表性的方式有三个，《Neural Machine Translation by Jointly Learning to Align and Translate》提出的是第三个，两个向量之间没有interaction.</p><p>而《Effective Approaches to Attention-based Neural Machine Translation》提出的是第二个，两个向量interaction比第一个更复杂，被广泛采用。</p><p>2) <strong>计算context vector</strong></p><p>根据公式(2)中计算得到的注意力权重，源序列状态的权重均值(即上下文向量)的计算过程可由公式(3)表示。</p><p>$$c_t = \sum_{s} \alpha_{st} \overline{h}_s \tag{3}$$</p><p>3) <strong>生成attention vector</strong></p><p>将context vector和当前decoder的hidden state作为参数，代入公式(4):</p><p>$$c_t = f(c_t,h_t) = \tanh（W_c[c_t;h_t]） \tag{4}$$</p><p>4) <strong>decoder的输入</strong></p><p>使用公式(4)中得到的attention vector，除了用于得到模型的归一化逻辑输出和损失值，还作为下一个 time step 的输入，与传统的 seq2seq 模型中最后一层的隐藏层状态相似。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="传统的seq2seq"><a href="#传统的seq2seq" class="headerlink" title="传统的seq2seq"></a>传统的seq2seq</h2><p>传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为可观的效果，却会成为较长的句子效果不好。</p><p><img src="1.png" alt></p><h2 id="Attention及其优点"><a href="#Attention及其优点" class="headerlink" title="Attention及其优点"></a>Attention及其优点</h2><p>Attention最初是在计算机视觉领域被提出的，在NLP领域，首先提出的是 《NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE》。</p><p><strong>Attention 的核心优点</strong>就是通过在decode阶段对<strong>source sequence中相关的部分给予attention</strong>，注意这里是要<strong>相关的才予以attention</strong>。</p><p>Attention 机制提供了一种新的方法，可以使 decoder 对于 source sequence 中的信息选择重点进行记忆，也就是把encoding过程中的所有hidden states作为一个pool，有点像random access memory，在decode的时候可以按需retrieve。</p><p><strong>这也符合人类的阅读习惯，择其善者而用之</strong>，比如人在翻译的英语句子时候，不是先把一个长句熟记于心后再开始闭着眼睛翻译，通常的做法是通读全文，把握整体，然后一边查看原文一边翻译，Attention就是这样一个过程，有点像传统机器翻译中的语料对齐的过程，即找出哪部分原文对应哪部分译文，而NMT中的attention是隐式的对齐。</p><h2 id="Attention的步骤"><a href="#Attention的步骤" class="headerlink" title="Attention的步骤"></a>Attention的步骤</h2><p>那么 attention 这种重大改进是如何做到的呢？Attention在每个decode的time step都会进行计算，主要包含了如下四个步骤，如图所示：</p><p><img src="2.png" alt></p><p>1) <strong>计算 attention weights</strong></p><p>Attention weights是通过当前decoder的hidden state $h_t$和source sequence每一个的 hiddden state $\overline{h}_s$ 进行计算，计算方法如公式(1):</p><p>$$\alpha _{st} = \frac{exp(score(\overline{h}_s,h_t))}{\sum_{s’}exp(score(\overline{h}_s’,h_t))} \tag{1}$$</p><p>关于 score 函数的选择有很多，如下所示：</p><p><img src="3.png" alt></p><p>代表性的方式有三个，《Neural Machine Translation by Jointly Learning to Align and Translate》提出的是第三个，两个向量之间没有interaction.</p><p>而《Effective Approaches to Attention-based Neural Machine Translation》提出的是第二个，两个向量interaction比第一个更复杂，被广泛采用。</p><p>2) <strong>计算context vector</strong></p><p>根据公式(2)中计算得到的注意力权重，源序列状态的权重均值(即上下文向量)的计算过程可由公式(3)表示。</p><p>$$c_t = \sum_{s} \alpha_{st} \overline{h}_s \tag{3}$$</p><p>3) <strong>生成attention vector</strong></p><p>将context vector和当前decoder的hidden state作为参数，代入公式(4):</p><p>$$c_t = f(c_t,h_t) = \tanh（W_c[c_t;h_t]） \tag{4}$$</p><p>4) <strong>decoder的输入</strong></p><p>使用公式(4)中得到的attention vector，除了用于得到模型的归一化逻辑输出和损失值，还作为下一个 time step 的输入，与传统的 seq2seq 模型中最后一层的隐藏层状态相似。</p>]]></content>
       
       
       <categories>
@@ -47,11 +195,11 @@
       
         <tags>
             
-            <tag> Evaluation metrics </tag>
-            
             <tag> chatbot </tag>
             
             <tag> QA </tag>
+            
+            <tag> Evaluation metrics </tag>
             
         </tags>
       

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://daffodilflower.github.io/"/>
-  <updated>2020-02-07T07:04:06.850Z</updated>
+  <updated>2020-02-10T08:35:08.171Z</updated>
   <id>https://daffodilflower.github.io/</id>
   
   <author>
@@ -17,11 +17,169 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Reinforcement Learning（4）：</title>
+    <link href="https://daffodilflower.github.io/rl-4/"/>
+    <id>https://daffodilflower.github.io/rl-4/</id>
+    <published>2020-02-10T07:31:41.000Z</published>
+    <updated>2020-02-10T08:35:08.171Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Reinforcement Learning（3）：Policy Gradient</title>
+    <link href="https://daffodilflower.github.io/rl-3/"/>
+    <id>https://daffodilflower.github.io/rl-3/</id>
+    <published>2020-02-10T07:31:39.000Z</published>
+    <updated>2020-02-10T09:10:08.379Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;前一篇文章讲了基础算法中的基于 value function 的方法。&lt;/p&gt;
+&lt;p&gt;本文介绍另外一种算法，它试图直接优化 policy $\pi(s; \theta)$（ $\theta \in R^d$ 是参数，$\pi$ &lt;strong&gt;通常是 actions
+        
+      
+    
+    </summary>
+    
+      <category term="Reinforcement Learning" scheme="https://daffodilflower.github.io/categories/Reinforcement-Learning/"/>
+    
+    
+      <category term="Reinforcement Learning" scheme="https://daffodilflower.github.io/tags/Reinforcement-Learning/"/>
+    
+      <category term="Policy Gradient" scheme="https://daffodilflower.github.io/tags/Policy-Gradient/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Reinforcement Learning（2）：Q-leanring</title>
+    <link href="https://daffodilflower.github.io/rl-2/"/>
+    <id>https://daffodilflower.github.io/rl-2/</id>
+    <published>2020-02-10T07:29:45.000Z</published>
+    <updated>2020-02-10T08:41:32.419Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Q-learning&quot;&gt;&lt;a href=&quot;#Q-learning&quot; class=&quot;headerlink&quot; title=&quot;Q-learning&quot;&gt;&lt;/a&gt;Q-learning&lt;/h2&gt;&lt;p&gt;Q-learning 基于这个观察：如果 optimal
+        
+      
+    
+    </summary>
+    
+      <category term="Reinforcement Learning" scheme="https://daffodilflower.github.io/categories/Reinforcement-Learning/"/>
+    
+    
+      <category term="Reinforcement Learning" scheme="https://daffodilflower.github.io/tags/Reinforcement-Learning/"/>
+    
+      <category term="Q-leanring" scheme="https://daffodilflower.github.io/tags/Q-leanring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Reinforcement Learning（1）：基础</title>
+    <link href="https://daffodilflower.github.io/rl-1/"/>
+    <id>https://daffodilflower.github.io/rl-1/</id>
+    <published>2020-02-10T07:28:17.000Z</published>
+    <updated>2020-02-10T08:30:12.541Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Reinforcement learning（RL）是一种 learning paradigm ，一个智能的agent 通过与最开始不了解的 environment 交互并学习作出最优决策。&lt;/p&gt;
+&lt;p&gt;与supervised learning 相比，RL
+        
+      
+    
+    </summary>
+    
+      <category term="Reinforcement Learning" scheme="https://daffodilflower.github.io/categories/Reinforcement-Learning/"/>
+    
+    
+      <category term="Reinforcement Learning" scheme="https://daffodilflower.github.io/tags/Reinforcement-Learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Conversational AI（1）：概述</title>
+    <link href="https://daffodilflower.github.io/conversational-ai-1/"/>
+    <id>https://daffodilflower.github.io/conversational-ai-1/</id>
+    <published>2020-02-09T09:07:32.000Z</published>
+    <updated>2020-02-09T12:43:27.888Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;开发一个不仅能模拟人类对话也可以回答问题（从电影明星的新闻到爱因斯坦相对论），还能完成复杂任务（旅行计划）的conversational AI，是长久以来 AI 领域的一个目标。&lt;/p&gt;
+&lt;p&gt;Conversational AI 和 Dialogue systems
+        
+      
+    
+    </summary>
+    
+      <category term="Conversational AI" scheme="https://daffodilflower.github.io/categories/Conversational-AI/"/>
+    
+    
+      <category term="chatbot" scheme="https://daffodilflower.github.io/tags/chatbot/"/>
+    
+      <category term="QA" scheme="https://daffodilflower.github.io/tags/QA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Conversational AI（2）：Approaches的变迁</title>
+    <link href="https://daffodilflower.github.io/conversational-ai-2/"/>
+    <id>https://daffodilflower.github.io/conversational-ai-2/</id>
+    <published>2020-02-08T10:57:08.000Z</published>
+    <updated>2020-02-09T12:46:11.124Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。&lt;/p&gt;
+&lt;p&gt;NLP applications
+        
+      
+    
+    </summary>
+    
+      <category term="Conversational AI" scheme="https://daffodilflower.github.io/categories/Conversational-AI/"/>
+    
+    
+      <category term="chatbot" scheme="https://daffodilflower.github.io/tags/chatbot/"/>
+    
+      <category term="QA" scheme="https://daffodilflower.github.io/tags/QA/"/>
+    
+      <category term="Neural approaches" scheme="https://daffodilflower.github.io/tags/Neural-approaches/"/>
+    
+  </entry>
+  
+  <entry>
     <title>NLP中的Attention（1）</title>
     <link href="https://daffodilflower.github.io/attention-1/"/>
     <id>https://daffodilflower.github.io/attention-1/</id>
     <published>2020-02-07T02:48:02.000Z</published>
-    <updated>2020-02-07T07:04:06.850Z</updated>
+    <updated>2020-02-07T08:04:30.243Z</updated>
     
     <summary type="html">
     
@@ -67,11 +225,11 @@
       <category term="Evaluation metrics" scheme="https://daffodilflower.github.io/categories/Evaluation-metrics/"/>
     
     
-      <category term="Evaluation metrics" scheme="https://daffodilflower.github.io/tags/Evaluation-metrics/"/>
-    
       <category term="chatbot" scheme="https://daffodilflower.github.io/tags/chatbot/"/>
     
       <category term="QA" scheme="https://daffodilflower.github.io/tags/QA/"/>
+    
+      <category term="Evaluation metrics" scheme="https://daffodilflower.github.io/tags/Evaluation-metrics/"/>
     
   </entry>
   

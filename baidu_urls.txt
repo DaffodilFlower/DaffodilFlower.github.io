@@ -1,3 +1,9 @@
+https://daffodilflower.github.io/rl-4/
+https://daffodilflower.github.io/rl-3/
+https://daffodilflower.github.io/rl-2/
+https://daffodilflower.github.io/rl-1/
+https://daffodilflower.github.io/conversational-ai-1/
+https://daffodilflower.github.io/conversational-ai-2/
 https://daffodilflower.github.io/attention-1/
 https://daffodilflower.github.io/recall-at-k/
 https://daffodilflower.github.io/word2html/

@@ -290,7 +290,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -474,7 +474,7 @@
             <div id="articleContent">
                 <h2 id="传统的seq2seq"><a href="#传统的seq2seq" class="headerlink" title="传统的seq2seq"></a>传统的seq2seq</h2><p>传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为可观的效果，却会成为较长的句子效果不好。</p>
 <p><img src="1.png" alt></p>
-<h2 id="Attention及其优点"><a href="#Attention及其优点" class="headerlink" title="Attention及其优点"></a>Attention及其优点</h2><p>Attention最初是在计算机视觉领域被提出的，在NLP领域，首先提出的是《NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE》</p>
+<h2 id="Attention及其优点"><a href="#Attention及其优点" class="headerlink" title="Attention及其优点"></a>Attention及其优点</h2><p>Attention最初是在计算机视觉领域被提出的，在NLP领域，首先提出的是 《NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE》。</p>
 <p><strong>Attention 的核心优点</strong>就是通过在decode阶段对<strong>source sequence中相关的部分给予attention</strong>，注意这里是要<strong>相关的才予以attention</strong>。</p>
 <p>Attention 机制提供了一种新的方法，可以使 decoder 对于 source sequence 中的信息选择重点进行记忆，也就是把encoding过程中的所有hidden states作为一个pool，有点像random access memory，在decode的时候可以按需retrieve。</p>
 <p><strong>这也符合人类的阅读习惯，择其善者而用之</strong>，比如人在翻译的英语句子时候，不是先把一个长句熟记于心后再开始闭着眼睛翻译，通常的做法是通读全文，把握整体，然后一边查看原文一边翻译，Attention就是这样一个过程，有点像传统机器翻译中的语料对齐的过程，即找出哪部分原文对应哪部分译文，而NMT中的attention是隐式的对齐。</p>
@@ -593,52 +593,55 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/attention-1/">
+                <a href="/conversational-ai-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="NLP中的Attention（1）">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Conversational AI（2）：Approaches的变迁">
                         
-                        <span class="card-title">NLP中的Attention（1）</span>
+                        <span class="card-title">Conversational AI（2）：Approaches的变迁</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            传统的seq2seq传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为
+                            Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。
+NLP applications 在使用语言知识的层面上区别于其他数据处理系统，包括 phonol
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Attention/" class="post-category" target="_blank">
-                                    Attention
+                            <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                                    Conversational AI
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Attention/" target="_blank">
-                        <span class="chip bg-color">Attention</span>
+                    <a href="/tags/chatbot/" target="_blank">
+                        <span class="chip bg-color">chatbot</span>
                     </a>
                     
-                    <a href="/tags/Seq2seq/" target="_blank">
-                        <span class="chip bg-color">Seq2seq</span>
+                    <a href="/tags/QA/" target="_blank">
+                        <span class="chip bg-color">QA</span>
+                    </a>
+                    
+                    <a href="/tags/Neural-approaches/" target="_blank">
+                        <span class="chip bg-color">Neural approaches</span>
                     </a>
                     
                 </div>
@@ -656,7 +659,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Recall@k是什么">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Recall@k是什么">
                         
                         <span class="card-title">Recall@k是什么</span>
                     </div>
@@ -687,16 +690,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Evaluation-metrics/" target="_blank">
-                        <span class="chip bg-color">Evaluation metrics</span>
-                    </a>
-                    
                     <a href="/tags/chatbot/" target="_blank">
                         <span class="chip bg-color">chatbot</span>
                     </a>
                     
                     <a href="/tags/QA/" target="_blank">
                         <span class="chip bg-color">QA</span>
+                    </a>
+                    
+                    <a href="/tags/Evaluation-metrics/" target="_blank">
+                        <span class="chip bg-color">Evaluation metrics</span>
                     </a>
                     
                 </div>
@@ -859,7 +862,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">1.3k</span>
+            <span class="white-color">5.4k</span>
             
 
             <br>
