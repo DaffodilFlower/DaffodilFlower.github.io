@@ -493,7 +493,7 @@
 <p>公式10两边取log得：</p>
 <p>$$\log P(\tau | \theta) = \log P(s_1^n) \sum_{t=1}^{H_n} \log \pi(a_t|s_t^n;\theta) + \log P(r_t^n,s_{t+1}^n | s_t^n,a_t^n) \tag{11}$$</p>
 <p>公式11两边对 $\theta$ 求导，并忽略掉与 $\theta$ 无关的部分：</p>
-<p>$$\nabla_\theta \log P(\tau | \theta) = \sum_{t=1}^H_n \nabla_\theta \log \pi(a_t^n|s_t^n;\theta) \tag{12}$$</p>
+<p>$$\nabla_\theta \log P(\tau | \theta) = \sum_{t=1}^{H_n} \nabla_\theta \log \pi(a_t^n|s_t^n;\theta) \tag{12}$$</p>
 <p>代入公式9，其中 N 代表多少个 trajectory，${H_n}$ 代表某个trajectory的长度：</p>
 <p>$$\begin{equation}\begin{split} \nabla_\theta R(\theta) &amp;\approx  \frac{1}{N} \sum_{n=1}^N R(\tau^n) \nabla \log P(\tau | \theta) \\ &amp;= \frac{1}{N} \sum_{n=1}^N R(\tau^n) \sum_{t=1}^{H_n} \nabla \log \pi(a_t^n|s_t^n;\theta) \\ &amp;= \frac{1}{N} \sum_{n=1}^N \sum_{t=1}^{H_n} R(\tau^n)  \nabla \log \pi(a_t^n|s_t^n;\theta) \end{split}\end{equation} \tag{13}$$</p>
 <p><strong>公式13的意义是</strong> 如果 actor 在 trajectory $\tau^n$ 的时候，看见 state $s_t^n$ 并采用 action $a_t^n$：</p>
