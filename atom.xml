@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://daffodilflower.github.io/"/>
-  <updated>2020-02-10T08:35:08.171Z</updated>
+  <updated>2020-02-15T03:39:37.719Z</updated>
   <id>https://daffodilflower.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gdb和pdb常用命令</title>
+    <link href="https://daffodilflower.github.io/gdb-pdb/"/>
+    <id>https://daffodilflower.github.io/gdb-pdb/</id>
+    <published>2020-02-15T03:36:15.000Z</published>
+    <updated>2020-02-15T03:39:37.719Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;常用的gdb命令&quot;&gt;&lt;a href=&quot;#常用的gdb命令&quot; class=&quot;headerlink&quot; title=&quot;常用的gdb命令&quot;&gt;&lt;/a&gt;常用的gdb命令&lt;/h2&gt;&lt;p&gt;gdb 是 C/C++ 的调试工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;gdb.png&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="调试" scheme="https://daffodilflower.github.io/categories/%E8%B0%83%E8%AF%95/"/>
+    
+    
+      <category term="Python" scheme="https://daffodilflower.github.io/tags/Python/"/>
+    
+      <category term="C" scheme="https://daffodilflower.github.io/tags/C/"/>
+    
+      <category term="C++" scheme="https://daffodilflower.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>Reinforcement Learning（4）：</title>

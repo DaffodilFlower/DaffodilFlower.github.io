@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>gdb和pdb常用命令</title>
+      <link href="/gdb-pdb/"/>
+      <url>/gdb-pdb/</url>
+      
+        <content type="html"><![CDATA[<h2 id="常用的gdb命令"><a href="#常用的gdb命令" class="headerlink" title="常用的gdb命令"></a>常用的gdb命令</h2><p>gdb 是 C/C++ 的调试工具</p><p><img src="gdb.png" alt></p><h2 id="常用的-ipdb-命令"><a href="#常用的-ipdb-命令" class="headerlink" title="常用的 ipdb 命令"></a>常用的 ipdb 命令</h2><p>pdb 是 python调试工具，ipdb 是 pdb 的加强版，它和pdb有相同的接口，增加了语法高亮、tab补全、更友好的堆栈信息等功能。</p><pre><code>h(help)：帮助命令s(step into)：进入函数内部n(next)：执行下一行b(break): b line_number 打断点cl(clear): 清除断点c(continue): 一直执行到断点r(return): 从当前函数返回j(jump): j line_number，跳过代码片段，直接执行指定行号所在的代码l(list): 列出上下文代码a(argument): 列出传入函数所有的参数值p/pp: print 和 pretty print 打印出变量值r(restart): 重启调试器q(quit): 推出调试，清除所有信息</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 调试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> C </tag>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Reinforcement Learning（4）：</title>
       <link href="/rl-4/"/>
       <url>/rl-4/</url>

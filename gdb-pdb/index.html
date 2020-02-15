@@ -4,13 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Reinforcement Learning（2）：Q-leanring, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="gdb和pdb常用命令, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="Q-learningQ-learning 基于这个观察：如果 optimal Q-function 可用，则optimal policy 可以被直接获得。
-具体来说， optimal policy 能够被公式1决定：
-$$\pi^{\sta">
+    <meta name="description" content="常用的gdb命令gdb 是 C/C++ 的调试工具
+
+常用的 ipdb 命令pdb 是 python调试工具，ipdb 是 pdb 的加强版，它和pdb有相同的接口，增加了语法高亮、tab补全、更友好的堆栈信息等功能。
+h(help)：帮助">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +19,7 @@ $$\pi^{\sta">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Reinforcement Learning（2）：Q-leanring | 水仙花&#39;s blog</title>
+    <title>gdb和pdb常用命令 | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -292,13 +293,13 @@ $$\pi^{\sta">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Reinforcement Learning（2）：Q-leanring
+                        gdb和pdb常用命令
                     </div>
                 </div>
             </div>
@@ -409,12 +410,16 @@ $$\pi^{\sta">
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Reinforcement-Learning/" target="_blank">
-                            <span class="chip bg-color">Reinforcement Learning</span>
+                        <a href="/tags/Python/" target="_blank">
+                            <span class="chip bg-color">Python</span>
                         </a>
                         
-                        <a href="/tags/Q-leanring/" target="_blank">
-                            <span class="chip bg-color">Q-leanring</span>
+                        <a href="/tags/C/" target="_blank">
+                            <span class="chip bg-color">C</span>
+                        </a>
+                        
+                        <a href="/tags/C/" target="_blank">
+                            <span class="chip bg-color">C++</span>
                         </a>
                         
                     </div>
@@ -425,8 +430,8 @@ $$\pi^{\sta">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Reinforcement-Learning/" class="post-category" target="_blank">
-                            Reinforcement Learning
+                        <a href="/categories/调试/" class="post-category" target="_blank">
+                            调试
                         </a>
                         
                     </div>
@@ -437,7 +442,7 @@ $$\pi^{\sta">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-10
+                    2020-02-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -451,14 +456,14 @@ $$\pi^{\sta">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    757
+                    194
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
                 
@@ -474,44 +479,22 @@ $$\pi^{\sta">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Q-learning"><a href="#Q-learning" class="headerlink" title="Q-learning"></a>Q-learning</h2><p>Q-learning 基于这个观察：如果 optimal Q-function 可用，则optimal policy 可以被直接获得。</p>
-<p>具体来说， optimal policy 能够被公式1决定：</p>
-<p>$$\pi^{\star}(s) = argmax_a Q^{\star}(s, a) \tag{1}$$</p>
-<p>这种 RL 算法大类是学习 $Q^*(s, a)$，也就是基于 value function 的方法。</p>
-<p>在实践中，如果问题比较大型，把 $Q(s, a)$ 表示为一个表格，表格的一个 entry 存储每个不同的 $(s, a)$ 比较 expensive，比如，围棋的 states 数量大于 $2 × 10^{170}$（Tromp and Farneback, 2006）。</p>
-<p><strong>因此，通常使用 compact forms 来表示 Q</strong>。特别的，假设 Q-function 有预先定义的参数形式，以 向量 $\theta \in R^d$ 作为参数，比如用 linear approximation：<br>$$Q(s, a; \theta) = \phi(s, a)^T \theta$$ </p>
-<p>其中 $\phi(s, a)$ 是一个表示 state-action pair $(s, a)$ 的d维人工编码的 feature vector，$\theta$ 是对应的 coefficient vector，从数据中学习得到。</p>
-<p>总的来说，$Q(s, a; \theta)$ 可能采用不同的参数形式，如在Deep Q-Network （DQN）中，$Q(s, a; \theta)$ 采用深度神经网络的形式，如： </p>
-<ul>
-<li>Multi-layer perceptrons</li>
-<li>CNN（Tesauro, 1995; Mnih et al., 2015）</li>
-<li>RNN （Hausknecht and Stone, 2015; Li et al., 2015）</li>
-</ul>
-<p>此外，也可以把 Q-function 表达为 <strong>non-parametric</strong> 形式，如：</p>
-<ul>
-<li>Decision trees（Ernst et al., 2005）</li>
-<li>Gaussian processes （Engel et al.,2005）</li>
-</ul>
-<p>为了学习 Q-function，通过如下的更新规则来修改参数$\theta$，<strong>在观察到一个 state transition $(s, a, r, s’)$ 之后</strong>：</p>
-<p>$$θ \leftarrow θ + \alpha (\underbrace{r + \gamma \max_{a’} Q(s’, a’; \theta) − Q(s, a; \theta)}_{\text{temporal difference}}) \nabla_{\theta} Q(s, a; \theta). \tag{2}$$</p>
-<p>上述的更新就是 Q-learning（Watkins, 1989），产生 $\theta$ 的一个小变化， 通过 step-size parameter $\alpha$ 来控制，以及通过 temporal difference（Sutton, 1988）来计算。</p>
-<p>但是在实践中 Q-learning 相当不稳定，并且在达到好的 $Q^*$ 近似之前需要很多 samples 。</p>
-<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><p>下面两个改进比较有用。</p>
-<ul>
-<li><p>第一个是 experience replay （Lin, 1992），由 Mnih et al. 2015 流行开来。它不是使用  observed transition 一次性的使用公式2来更新 $\theta$，而是将其存储到一个 replay buffer 中，然后周期性的从中 sample 出  transitions 来执行 Q-learning 的 updates。这种方式下，每个 transition 能够被多次使用，因此提高了 sample 的效率。此外，这个方法防止了当更新参数 $\theta$ 时数据分布变化随时间过快，使学习更稳定。</p>
-</li>
-<li><p>第二个方法是用两个网络实现（Mnih et al., 2015），这是一种 more general fitted value iteration algorithm （Munos and Szepesvari, 2008） 的例子。<strong>Learner 维护一个 extra copy of the Q-function，叫做 target network，以 $θ_{target}$ 作为参数。学习过程中，$θ_{target}$ 是固定的</strong>，用来计算 temporal difference 以更新 $\theta$。特别的，公式2变成了：</p>
-<p>  $$θ \leftarrow θ + \alpha (\underbrace{r + \gamma \max_{a’} Q(s’, a’; \theta_{target}) − Q(s, a; \theta)}_{\text{temporal difference}}) \nabla_{\theta} Q(s, a; \theta) \tag{3}$$</p>
-<p>  $θ_{target}$ 周期性的被更新为 $\theta$，这个过程一直持续。</p>
-</li>
-</ul>
-<p>近期还有一些对 basic Q-learning 的改进，如： </p>
-<ul>
-<li>Dueling Q-network （Wang et al., 2016）</li>
-<li>Double Q-learning （van Hasselt et al., 2016）</li>
-<li>A provably convergent SBEED algorithm（Dai et al., 2018b）</li>
-</ul>
-
+                <h2 id="常用的gdb命令"><a href="#常用的gdb命令" class="headerlink" title="常用的gdb命令"></a>常用的gdb命令</h2><p>gdb 是 C/C++ 的调试工具</p>
+<p><img src="gdb.png" alt></p>
+<h2 id="常用的-ipdb-命令"><a href="#常用的-ipdb-命令" class="headerlink" title="常用的 ipdb 命令"></a>常用的 ipdb 命令</h2><p>pdb 是 python调试工具，ipdb 是 pdb 的加强版，它和pdb有相同的接口，增加了语法高亮、tab补全、更友好的堆栈信息等功能。</p>
+<pre><code>h(help)：帮助命令
+s(step into)：进入函数内部
+n(next)：执行下一行
+b(break): b line_number 打断点
+cl(clear): 清除断点
+c(continue): 一直执行到断点
+r(return): 从当前函数返回
+j(jump): j line_number，跳过代码片段，直接执行指定行号所在的代码
+l(list): 列出上下文代码
+a(argument): 列出传入函数所有的参数值
+p/pp: print 和 pretty print 打印出变量值
+r(restart): 重启调试器
+q(quit): 推出调试，清除所有信息</code></pre>
             </div>
             <hr />
 
@@ -545,9 +528,9 @@ $$\pi^{\sta">
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Reinforcement Learning（2）：Q-leanring》
+                    《gdb和pdb常用命令》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/rl-2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/gdb-pdb/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -588,7 +571,7 @@ $$\pi^{\sta">
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'rl-2/',
+        id: 'gdb-pdb/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -609,51 +592,59 @@ $$\pi^{\sta">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/rl-3/">
+                <a href="/gdb-pdb/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Reinforcement Learning（3）：Policy Gradient">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="gdb和pdb常用命令">
                         
-                        <span class="card-title">Reinforcement Learning（3）：Policy Gradient</span>
+                        <span class="card-title">gdb和pdb常用命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前一篇文章讲了基础算法中的基于 value function 的方法。
-本文介绍另外一种算法，它试图直接优化 policy $\pi(s; \theta)$（ $\theta \in R^d$ 是参数，$\pi$ 通常是 actions 的
+                            常用的gdb命令gdb 是 C/C++ 的调试工具
+
+常用的 ipdb 命令pdb 是 python调试工具，ipdb 是 pdb 的加强版，它和pdb有相同的接口，增加了语法高亮、tab补全、更友好的堆栈信息等功能。
+h(help)：帮助
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Reinforcement-Learning/" class="post-category" target="_blank">
-                                    Reinforcement Learning
+                            <a href="/categories/调试/" class="post-category" target="_blank">
+                                    调试
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Reinforcement-Learning/" target="_blank">
-                        <span class="chip bg-color">Reinforcement Learning</span>
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="/tags/Policy-Gradient/" target="_blank">
-                        <span class="chip bg-color">Policy Gradient</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -667,20 +658,19 @@ $$\pi^{\sta">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/rl-1/">
+                <a href="/rl-4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Reinforcement Learning（1）：基础">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Reinforcement Learning（4）：">
                         
-                        <span class="card-title">Reinforcement Learning（1）：基础</span>
+                        <span class="card-title">Reinforcement Learning（4）：</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Reinforcement learning（RL）是一种 learning paradigm ，一个智能的agent 通过与最开始不了解的 environment 交互并学习作出最优决策。
-与supervised learning 相比，
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -689,23 +679,8 @@ $$\pi^{\sta">
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Reinforcement-Learning/" class="post-category" target="_blank">
-                                    Reinforcement Learning
-                                </a>
-                            
-                            
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Reinforcement-Learning/" target="_blank">
-                        <span class="chip bg-color">Reinforcement Learning</span>
-                    </a>
-                    
                 </div>
                 
             </div>
