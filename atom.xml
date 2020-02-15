@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://daffodilflower.github.io/"/>
-  <updated>2020-02-15T03:39:37.719Z</updated>
+  <updated>2020-02-15T04:42:41.311Z</updated>
   <id>https://daffodilflower.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Conversational AI（3）：Conversational QA 概述</title>
+    <link href="https://daffodilflower.github.io/conversational-ai-3/"/>
+    <id>https://daffodilflower.github.io/conversational-ai-3/</id>
+    <published>2020-02-15T03:49:59.000Z</published>
+    <updated>2020-02-15T04:42:41.311Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在 《Conversational AI（1）：概述》中提到了，Conversational AI 的分类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QA bots&lt;/li&gt;
+&lt;li&gt;Task-oriented bots，通常使用模块化系统实现，bot
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>gdb和pdb常用命令</title>

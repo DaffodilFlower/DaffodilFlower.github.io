@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Conversational AI（3）：Conversational QA 概述</title>
+      <link href="/conversational-ai-3/"/>
+      <url>/conversational-ai-3/</url>
+      
+        <content type="html"><![CDATA[<p>在 《Conversational AI（1）：概述》中提到了，Conversational AI 的分类：</p><ul><li>QA bots</li><li>Task-oriented bots，通常使用模块化系统实现，bot 访问外部数据库查询信息并完成任务，（Young et al., 2013; Tur and De Mori, 2011）。</li><li>Social chatbots，也就是chitchat，通常使用非模块化系统实现，这是由于它的任务是通过与人们的情感联系成为人们的AI伙伴，而不是完成具体的任务，通常使用模仿人类对话的基于深度神经网络的 response generation 模型来实现（训练数据是大量的人与人对话数据）（Ritter et al., 2011; Sordoni et al., 2015b; Vinyals and Le, 2015; Shang et al., 2015）。 </li></ul><p>其中第一类是 conversational QA agents，分为两类：</p><ul><li>KB-QA agents，允许用户查询一个大规模的 Knowledge Base (KB) </li><li>Text-QA agents，允许用户查询自然语言文档的集合，</li></ul><h2 id="KB-QA-agents"><a href="#KB-QA-agents" class="headerlink" title="KB-QA agents"></a>KB-QA agents</h2><p>KB-QA agents 比传统的 SQL-like systems 更灵活和友好，用户可以交互式的查询 KB 而不需要写 SQL-like queries。 </p><p>KB-QA 的 approaches 大致有如下几种：</p><ul><li>Symbolic approaches to KB-QA based on semantic<br>parsing，但是 symbolic system is hard to scale because the keyword-matching-based, query-to-answer inference used by the system is inefficient for a very large KB, and is not robust to paraphrasing.</li><li>为了解决 Symbolic approaches 的问题，neural approaches are developed to represent queries and KB using continuous semantic vectors so that the inference can be performed at the semantic level<br>in a compact neural space.</li></ul><h2 id="Text-QA-agents"><a href="#Text-QA-agents" class="headerlink" title="Text-QA agents"></a>Text-QA agents</h2><p>Text-QA agents 在移动设备比传统的搜索引擎（Bing and Google）使用起来更简单，这是因为它们直接返回简洁的答案，而不是返回 relevant documents 的排序列表。</p><p>The heart of these systems is a neural Machine Reading Comprehension (MRC) model that generates an answer to an input question based on a (set of) passage(s)。</p><p>State-of-the-art MRC 技术包括如下两种：</p><ul><li>the methods of encoding questions and passages as vectors in a neural space</li><li>the methods of performing reasoning in the neural space to generate the answer. </li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>gdb和pdb常用命令</title>
       <link href="/gdb-pdb/"/>
       <url>/gdb-pdb/</url>
