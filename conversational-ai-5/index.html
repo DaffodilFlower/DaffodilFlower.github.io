@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Conversational AI（2）：Approaches的变迁, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="Conversational AI（5）：Multi-Step Reasoning on KB, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。
-NLP applications 在使用语言知识的层面上区别于其他数据处理系统，包括 phonol">
+    <meta name="description" content="Conversational AI（5）：Multi-Step Reasoning on KB | 水仙花&#39;s blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Conversational AI（2）：Approaches的变迁 | 水仙花&#39;s blog</title>
+    <title>Conversational AI（5）：Multi-Step Reasoning on KB | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +290,13 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Conversational AI（2）：Approaches的变迁
+                        Conversational AI（5）：Multi-Step Reasoning on KB
                     </div>
                 </div>
             </div>
@@ -408,12 +407,8 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Chatbot/" target="_blank">
-                            <span class="chip bg-color">Chatbot</span>
-                        </a>
-                        
-                        <a href="/tags/QA/" target="_blank">
-                            <span class="chip bg-color">QA</span>
+                        <a href="/tags/Knowledge-Graph-Reasoning/" target="_blank">
+                            <span class="chip bg-color">Knowledge Graph Reasoning</span>
                         </a>
                         
                     </div>
@@ -436,7 +431,7 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-08
+                    2020-02-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -450,14 +445,14 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    592
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
                 
@@ -473,34 +468,7 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。</p>
-<p>NLP applications <strong>在使用语言知识的层面上</strong>区别于其他数据处理系统，包括 phonology, morphology, syntax, semantics and discourse（Jurafsky and Martin, 2009）。 </p>
-<p>历史上，NLP的领域如图1所示：</p>
-<p><img src="1.png" alt="图1"></p>
-<p>图1中这些 task 通过把自然语言句子映射（或生成）一系列的人工定义的、无歧义的、symbolic representations（Part-Of-Speech, tags, context free grammar, first-order predicate calculus等），在不同的层面分解（或实现）自然语言的歧义（或多样性）</p>
-<p>随着 data-driven 和 statistical approaches 的崛起，图1中的这些components 被用作 engineered features 的丰富来源，作为机器学习模型的输入（Manning et al., 2014）。</p>
-<p><strong>Neural approaches 不依赖任何人工定义的symbolic representations，在一个task-specific neural space中学习，在这个space中 task-specific knowledge 通过 low-dimensional continuous vectors 隐式的表示为 semantic **concepts</strong>。</p>
-<p><img src="2.png" alt="图2"></p>
-<p>如图2所示，NLP tasks 的 neural methods（如 machine reading comprehension and dialogue）<strong>通常包含三步</strong>：</p>
-<ul>
-<li>Encoding symbolic user input and knowledge into their neural semantic representations, where semantically related or similar concepts are represented as vectors that are close to each other; </li>
-<li>Reasoning in the neural space to generate a system response based on input and system state; </li>
-<li>Decoding the system response into a natural language output in a symbolic space. </li>
-</ul>
-<p>Encoding, reasoning 和 decoding 都使用不同架构的神经网络实现，可能由深度神经网络堆叠，以 end-to-end 的方式通过反向传播训练。</p>
-<p>End-to-end training 导致终端应用和神经网络架构之间紧密的联系，减少了对传统NLP component boundaries（如morphological analysis and parsing）的需求，显著的平缓了图1中的技术栈，减少了对 feature engineering 的需求，关注点转移到针对终端应用仔细的调整神经网络的复杂架构</p>
-<p><strong>虽然 neural approaches 在其他 AI tasks 被广泛采用，但是在 conversational AI 却有点慢</strong>。仅仅最近才开始注意到 neural approaches 在产生了一些 state-of-the-art results。</p>
-<p>也有一些 <strong>hybrid methods</strong> 混合了 neural and symbolic approaches 的力量：</p>
-<ul>
-<li>Mou et al., 2016</li>
-<li>Liang et al., 2016</li>
-</ul>
-<p>如图2总结的：</p>
-<ul>
-<li>Neural approaches 可以被 end-to-end 方式训练，而且对于paraphrase alternations（释义的变换） 比较健壮，但是在执行效率和可解释性方面比较弱。</li>
-<li>Symbolic approaches 训练比较困难，对 paraphrase alternations 敏感，但是却可解释性和执行效率比较好。</li>
-</ul>
-
+                
             </div>
             <hr />
 
@@ -534,9 +502,9 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Conversational AI（2）：Approaches的变迁》
+                    《Conversational AI（5）：Multi-Step Reasoning on KB》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/conversational-ai-2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/conversational-ai-5/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -577,7 +545,7 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'conversational-ai-2/',
+        id: 'conversational-ai-5/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -598,30 +566,80 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/conversational-ai-1/">
+                <a href="/conversational-ai-5/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Conversational AI（1）：概述">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="Conversational AI（5）：Multi-Step Reasoning on KB">
                         
-                        <span class="card-title">Conversational AI（1）：概述</span>
+                        <span class="card-title">Conversational AI（5）：Multi-Step Reasoning on KB</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            开发一个不仅能模拟人类对话也可以回答问题（从电影明星的新闻到爱因斯坦相对论），还能完成复杂任务（旅行计划）的conversational AI，是长久以来 AI 领域的一个目标。
-Conversational AI 和 Dialogue s
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-09
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                                    Conversational AI
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Knowledge-Graph-Reasoning/" target="_blank">
+                        <span class="chip bg-color">Knowledge Graph Reasoning</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/conversational-ai-4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Conversational AI（4）：Sematic Parsing and Embedding-based methods for KBQA">
+                        
+                        <span class="card-title">Conversational AI（4）：Sematic Parsing and Embedding-based methods for KBQA</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            KB 和 KGKnowledge Base Organizing the world’s facts and storing them in a structured database, large scale Knowledge Base
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -637,65 +655,12 @@ Conversational AI 和 Dialogue s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Chatbot/" target="_blank">
-                        <span class="chip bg-color">Chatbot</span>
-                    </a>
-                    
                     <a href="/tags/QA/" target="_blank">
                         <span class="chip bg-color">QA</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/attention-1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="NLP中的Attention（1）">
-                        
-                        <span class="card-title">NLP中的Attention（1）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            传统的seq2seq传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Attention/" class="post-category" target="_blank">
-                                    Attention
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Attention/" target="_blank">
-                        <span class="chip bg-color">Attention</span>
-                    </a>
-                    
-                    <a href="/tags/Seq2seq/" target="_blank">
-                        <span class="chip bg-color">Seq2seq</span>
+                    <a href="/tags/KBQA/" target="_blank">
+                        <span class="chip bg-color">KBQA</span>
                     </a>
                     
                 </div>

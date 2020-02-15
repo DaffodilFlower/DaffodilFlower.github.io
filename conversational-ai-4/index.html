@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Conversational AI（2）：Approaches的变迁, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="Conversational AI（4）：Sematic Parsing and Embedding-based methods for KBQA, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。
-NLP applications 在使用语言知识的层面上区别于其他数据处理系统，包括 phonol">
+    <meta name="description" content="KB 和 KGKnowledge Base Organizing the world’s facts and storing them in a structured database, large scale Knowledge Base">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Conversational AI（2）：Approaches的变迁 | 水仙花&#39;s blog</title>
+    <title>Conversational AI（4）：Sematic Parsing and Embedding-based methods for KBQA | 水仙花&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +290,13 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Conversational AI（2）：Approaches的变迁
+                        Conversational AI（4）：Sematic Parsing and Embedding-based methods for KBQA
                     </div>
                 </div>
             </div>
@@ -408,12 +407,12 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Chatbot/" target="_blank">
-                            <span class="chip bg-color">Chatbot</span>
-                        </a>
-                        
                         <a href="/tags/QA/" target="_blank">
                             <span class="chip bg-color">QA</span>
+                        </a>
+                        
+                        <a href="/tags/KBQA/" target="_blank">
+                            <span class="chip bg-color">KBQA</span>
                         </a>
                         
                     </div>
@@ -436,7 +435,7 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-08
+                    2020-02-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -450,14 +449,14 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    592
+                    929
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
                 
@@ -473,33 +472,35 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Neural approaches 正在改变NLP与信息检索领域， 而 symbolic approaches 已经统治了这两个领域很多年。</p>
-<p>NLP applications <strong>在使用语言知识的层面上</strong>区别于其他数据处理系统，包括 phonology, morphology, syntax, semantics and discourse（Jurafsky and Martin, 2009）。 </p>
-<p>历史上，NLP的领域如图1所示：</p>
-<p><img src="1.png" alt="图1"></p>
-<p>图1中这些 task 通过把自然语言句子映射（或生成）一系列的人工定义的、无歧义的、symbolic representations（Part-Of-Speech, tags, context free grammar, first-order predicate calculus等），在不同的层面分解（或实现）自然语言的歧义（或多样性）</p>
-<p>随着 data-driven 和 statistical approaches 的崛起，图1中的这些components 被用作 engineered features 的丰富来源，作为机器学习模型的输入（Manning et al., 2014）。</p>
-<p><strong>Neural approaches 不依赖任何人工定义的symbolic representations，在一个task-specific neural space中学习，在这个space中 task-specific knowledge 通过 low-dimensional continuous vectors 隐式的表示为 semantic **concepts</strong>。</p>
-<p><img src="2.png" alt="图2"></p>
-<p>如图2所示，NLP tasks 的 neural methods（如 machine reading comprehension and dialogue）<strong>通常包含三步</strong>：</p>
+                <h2 id="KB-和-KG"><a href="#KB-和-KG" class="headerlink" title="KB 和 KG"></a>KB 和 KG</h2><p>Knowledge Base Organizing the world’s facts and storing them in a structured database, large scale Knowledge Bases(KB) like DBPedia (Auer et al., 2007), Freebase (Bollacker et al., 2008) and Yago (Suchanek et al.,2007) have become important resources for supporting open-domain QA.</p>
+<p>一个典型的 KB consists of a collection of subject-predicate-object triples $(s, r, t)$ where $s, t \in E$ are entities and r ∈ R is a predicate or relation. A KB in this form is often called a Knowledge Graph(KG) due to its graphical representation, i.e., the entities are nodes and the relations the directed edges that link the nodes.</p>
+<p><img src="img/2020-02-15-16-51-20.png" alt="图1"></p>
+<p>如图1的左边所示， Freebase 的一个关于 TV show Family Guy 的小的 subgraph。结点包括一下名字，日期和 special Compound Value Type (CVT is not a real-world entity, but is used to collect multiple fields of an event or a special relationship.) 实体。有向边描述了两个实体之间的关系，labeled by a predicate.</p>
+<h2 id="Semantic-Parsing-for-KB-QA"><a href="#Semantic-Parsing-for-KB-QA" class="headerlink" title="Semantic Parsing for KB-QA"></a>Semantic Parsing for KB-QA</h2><p>KB-QA 的大多数 state-of-the-art symbolic approaches 基于 semantic parsing, where a question is mapped to its formal meaning representation (e.g., logical form) and then translated to a KB query。 </p>
+<p>The answers to the question can then be obtained by finding a set of paths in the KB that match the query and retrieving the end nodes of these paths (Richardson et al., 1998; Berant et al., 2013; Yao and Van Durme, 2014; Bao et al., 2014; Yih et al., 2015b).</p>
+<p>以 Yih et al. (2015a) 作为例子来描述 QA 的过程。 图1的右边展示了 question “Who first voiced Meg on Family Guy?” 的 the logical form in $\lambda-calculus$ 以及它对应的 graph representation，也叫做 query graph。</p>
+<p>注意到 query graph is grounded in Freebase。</p>
 <ul>
-<li>Encoding symbolic user input and knowledge into their neural semantic representations, where semantically related or similar concepts are represented as vectors that are close to each other; </li>
-<li>Reasoning in the neural space to generate a system response based on input and system state; </li>
-<li>Decoding the system response into a natural language output in a symbolic space. </li>
+<li>MegGriffin 和 FamilyGuy 两个实体用两个rounded rectangle nodes 来表示。</li>
+<li>圆形 node y 表示there should exist an entity describing some casting relations like the character, actor and the time she started the role. y is grounded in a CVT entity in this case.</li>
+<li>阴影的圆形 node x 也叫做 answer node，用来 map entities retrieved by the query. </li>
+<li>钻石形的 node argmin 限制 answer 必须是 the earliest actor for this role。</li>
 </ul>
-<p>Encoding, reasoning 和 decoding 都使用不同架构的神经网络实现，可能由深度神经网络堆叠，以 end-to-end 的方式通过反向传播训练。</p>
-<p>End-to-end training 导致终端应用和神经网络架构之间紧密的联系，减少了对传统NLP component boundaries（如morphological analysis and parsing）的需求，显著的平缓了图1中的技术栈，减少了对 feature engineering 的需求，关注点转移到针对终端应用仔细的调整神经网络的复杂架构</p>
-<p><strong>虽然 neural approaches 在其他 AI tasks 被广泛采用，但是在 conversational AI 却有点慢</strong>。仅仅最近才开始注意到 neural approaches 在产生了一些 state-of-the-art results。</p>
-<p>也有一些 <strong>hybrid methods</strong> 混合了 neural and symbolic approaches 的力量：</p>
+<p>在图1左边的graph中 running the query graph without the aggregation function 将会 match LaceyChabert 和 MilaKunis。但是只有 LaceyChabert 是正确的 answer ，因为她 started this role earlier (by checking the from property of the grounded CVT node).</p>
+<p>把 symbolic KB-QA system 应用到一个非常大的 KB 中是很有挑战的，原因有二：</p>
 <ul>
-<li>Mou et al., 2016</li>
-<li>Liang et al., 2016</li>
+<li><p>第一个是自然语言的 Paraphrasing： 这导致了一个相同的问题可以由 a wide variety of semantically equivalent ways 来描述，并且在 KB-QA setting 中，这将导致 mismatches between the natural language questions and the label names (e.g., predicates) of the nodes and edges used in the KB. </p>
+<p>  如图1所示，我们需要 measure question 中 predicate 和 Freebase 中的 predicate 有多大可能 match，如 “Who first voiced Meg on Family Guy?”和 cast-actor。</p>
+<p>  Yih et al. (2015a) 提出了使用 learned DSSM 的方法，概念上来说这是一种 embedding-based method。</p>
+</li>
+<li><p>第二个是 search complexity： 搜索所有可能的 multi-step (compositional) relation paths that match complex queries is prohibitively expensive because the number of candidate paths<br>grows exponentially with the path length.。</p>
+</li>
 </ul>
-<p>如图2总结的：</p>
-<ul>
-<li>Neural approaches 可以被 end-to-end 方式训练，而且对于paraphrase alternations（释义的变换） 比较健壮，但是在执行效率和可解释性方面比较弱。</li>
-<li>Symbolic approaches 训练比较困难，对 paraphrase alternations 敏感，但是却可解释性和执行效率比较好。</li>
-</ul>
+<h2 id="Embedding-based-Methods"><a href="#Embedding-based-Methods" class="headerlink" title="Embedding-based Methods"></a>Embedding-based Methods</h2><p>为了解决 paraphrasing 的问题，embedding-based methods map entities and relations in a KB to continuous vectors in a neural space; see, e.g., Bordes et al. (2013); Socher et al. (2013); Yang<br>et al. (2015); Yih et al. (2015b)。这个 space 可以被视作一个 hidden semantic space where various expressions with the same semantic meaning map to the same continuous vector.</p>
+<p>大多数 KB embedding 模型用作 Knowledge Base Completion (KBC) task： predicting KB 中 没有的 triple (s, r, t) 的存在性。这个 task 比 KB-QA 简单，因为它只需要 predict whether a fact is true or not，因此不会 suffer from the search complexity problem.</p>
+<p>这些 basic KB models have been extended to answer multi-step relation queries，也叫做 path queries，如 “Where did Tad Lincoln’s parents live?” (Toutanova et al., 2016; Guu et al., 2015; Neelakantan et al., 2015). A path query consists of an initial anchor entity s (e.g., TadLincoln)，然后有一系列 relations to be traversed (r1, …, rk) (e.g., (parents, location)). </p>
+<p>可以使用 vector space compositions 把 embeddings of individual relations $r_i$ 组合成 embedding of the path $(r_1, …, r_k)$ 。</p>
+<p>这些 KB embedding 方法在给定一个 KB 然后验证 unseen facts(e.g., triples and path queries) 的时候展示了 good generalization performance。</p>
 
             </div>
             <hr />
@@ -534,9 +535,9 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Conversational AI（2）：Approaches的变迁》
+                    《Conversational AI（4）：Sematic Parsing and Embedding-based methods for KBQA》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/conversational-ai-2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/conversational-ai-4/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -577,7 +578,7 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'conversational-ai-2/',
+        id: 'conversational-ai-4/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -602,25 +603,24 @@ NLP applications 在使用语言知识的层面上区别于其他数据处理系
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/conversational-ai-1/">
+                <a href="/conversational-ai-5/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Conversational AI（1）：概述">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="Conversational AI（5）：Multi-Step Reasoning on KB">
                         
-                        <span class="card-title">Conversational AI（1）：概述</span>
+                        <span class="card-title">Conversational AI（5）：Multi-Step Reasoning on KB</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            开发一个不仅能模拟人类对话也可以回答问题（从电影明星的新闻到爱因斯坦相对论），还能完成复杂任务（旅行计划）的conversational AI，是长久以来 AI 领域的一个目标。
-Conversational AI 和 Dialogue s
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-09
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-15
                         </span>
                         <span class="publish-author">
                             
@@ -637,12 +637,8 @@ Conversational AI 和 Dialogue s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Chatbot/" target="_blank">
-                        <span class="chip bg-color">Chatbot</span>
-                    </a>
-                    
-                    <a href="/tags/QA/" target="_blank">
-                        <span class="chip bg-color">QA</span>
+                    <a href="/tags/Knowledge-Graph-Reasoning/" target="_blank">
+                        <span class="chip bg-color">Knowledge Graph Reasoning</span>
                     </a>
                     
                 </div>
@@ -656,31 +652,34 @@ Conversational AI 和 Dialogue s
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/attention-1/">
+                <a href="/conversational-ai-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="NLP中的Attention（1）">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Conversational AI（3）：Conversational QA 概述">
                         
-                        <span class="card-title">NLP中的Attention（1）</span>
+                        <span class="card-title">Conversational AI（3）：Conversational QA 概述</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            传统的seq2seq传统 seq2seq 模型的decode阶段，把source sequence的最后状态会被作为输入，把将计算出来的隐藏层状态全部丢弃，直接传递固定且单一维度的hidden state 到decoder，对于短句会有较为
+                            在 《Conversational AI（1）：概述》中提到了，Conversational AI 的分类：
+
+QA bots
+Task-oriented bots，通常使用模块化系统实现，bot 访问外部数据库查询信息并完成任务，（You
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Attention/" class="post-category" target="_blank">
-                                    Attention
+                            <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                                    Conversational AI
                                 </a>
                             
                             
@@ -690,12 +689,16 @@ Conversational AI 和 Dialogue s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Attention/" target="_blank">
-                        <span class="chip bg-color">Attention</span>
+                    <a href="/tags/QA/" target="_blank">
+                        <span class="chip bg-color">QA</span>
                     </a>
                     
-                    <a href="/tags/Seq2seq/" target="_blank">
-                        <span class="chip bg-color">Seq2seq</span>
+                    <a href="/tags/KBQA/" target="_blank">
+                        <span class="chip bg-color">KBQA</span>
+                    </a>
+                    
+                    <a href="/tags/TextQA/" target="_blank">
+                        <span class="chip bg-color">TextQA</span>
                     </a>
                     
                 </div>

@@ -4,13 +4,81 @@
   
     
     <entry>
+      <title>Conversational AI（5）：Multi-Step Reasoning on KB</title>
+      <link href="/conversational-ai-5/"/>
+      <url>/conversational-ai-5/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Conversational AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Knowledge Graph Reasoning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Conversational AI（4）：Sematic Parsing and Embedding-based methods for KBQA</title>
+      <link href="/conversational-ai-4/"/>
+      <url>/conversational-ai-4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="KB-和-KG"><a href="#KB-和-KG" class="headerlink" title="KB 和 KG"></a>KB 和 KG</h2><p>Knowledge Base Organizing the world’s facts and storing them in a structured database, large scale Knowledge Bases(KB) like DBPedia (Auer et al., 2007), Freebase (Bollacker et al., 2008) and Yago (Suchanek et al.,2007) have become important resources for supporting open-domain QA.</p><p>一个典型的 KB consists of a collection of subject-predicate-object triples $(s, r, t)$ where $s, t \in E$ are entities and r ∈ R is a predicate or relation. A KB in this form is often called a Knowledge Graph(KG) due to its graphical representation, i.e., the entities are nodes and the relations the directed edges that link the nodes.</p><p><img src="img/2020-02-15-16-51-20.png" alt="图1"></p><p>如图1的左边所示， Freebase 的一个关于 TV show Family Guy 的小的 subgraph。结点包括一下名字，日期和 special Compound Value Type (CVT is not a real-world entity, but is used to collect multiple fields of an event or a special relationship.) 实体。有向边描述了两个实体之间的关系，labeled by a predicate.</p><h2 id="Semantic-Parsing-for-KB-QA"><a href="#Semantic-Parsing-for-KB-QA" class="headerlink" title="Semantic Parsing for KB-QA"></a>Semantic Parsing for KB-QA</h2><p>KB-QA 的大多数 state-of-the-art symbolic approaches 基于 semantic parsing, where a question is mapped to its formal meaning representation (e.g., logical form) and then translated to a KB query。 </p><p>The answers to the question can then be obtained by finding a set of paths in the KB that match the query and retrieving the end nodes of these paths (Richardson et al., 1998; Berant et al., 2013; Yao and Van Durme, 2014; Bao et al., 2014; Yih et al., 2015b).</p><p>以 Yih et al. (2015a) 作为例子来描述 QA 的过程。 图1的右边展示了 question “Who first voiced Meg on Family Guy?” 的 the logical form in $\lambda-calculus$ 以及它对应的 graph representation，也叫做 query graph。</p><p>注意到 query graph is grounded in Freebase。</p><ul><li>MegGriffin 和 FamilyGuy 两个实体用两个rounded rectangle nodes 来表示。</li><li>圆形 node y 表示there should exist an entity describing some casting relations like the character, actor and the time she started the role. y is grounded in a CVT entity in this case.</li><li>阴影的圆形 node x 也叫做 answer node，用来 map entities retrieved by the query. </li><li>钻石形的 node argmin 限制 answer 必须是 the earliest actor for this role。</li></ul><p>在图1左边的graph中 running the query graph without the aggregation function 将会 match LaceyChabert 和 MilaKunis。但是只有 LaceyChabert 是正确的 answer ，因为她 started this role earlier (by checking the from property of the grounded CVT node).</p><p>把 symbolic KB-QA system 应用到一个非常大的 KB 中是很有挑战的，原因有二：</p><ul><li><p>第一个是自然语言的 Paraphrasing： 这导致了一个相同的问题可以由 a wide variety of semantically equivalent ways 来描述，并且在 KB-QA setting 中，这将导致 mismatches between the natural language questions and the label names (e.g., predicates) of the nodes and edges used in the KB. </p><p>  如图1所示，我们需要 measure question 中 predicate 和 Freebase 中的 predicate 有多大可能 match，如 “Who first voiced Meg on Family Guy?”和 cast-actor。</p><p>  Yih et al. (2015a) 提出了使用 learned DSSM 的方法，概念上来说这是一种 embedding-based method。</p></li><li><p>第二个是 search complexity： 搜索所有可能的 multi-step (compositional) relation paths that match complex queries is prohibitively expensive because the number of candidate paths<br>grows exponentially with the path length.。</p></li></ul><h2 id="Embedding-based-Methods"><a href="#Embedding-based-Methods" class="headerlink" title="Embedding-based Methods"></a>Embedding-based Methods</h2><p>为了解决 paraphrasing 的问题，embedding-based methods map entities and relations in a KB to continuous vectors in a neural space; see, e.g., Bordes et al. (2013); Socher et al. (2013); Yang<br>et al. (2015); Yih et al. (2015b)。这个 space 可以被视作一个 hidden semantic space where various expressions with the same semantic meaning map to the same continuous vector.</p><p>大多数 KB embedding 模型用作 Knowledge Base Completion (KBC) task： predicting KB 中 没有的 triple (s, r, t) 的存在性。这个 task 比 KB-QA 简单，因为它只需要 predict whether a fact is true or not，因此不会 suffer from the search complexity problem.</p><p>这些 basic KB models have been extended to answer multi-step relation queries，也叫做 path queries，如 “Where did Tad Lincoln’s parents live?” (Toutanova et al., 2016; Guu et al., 2015; Neelakantan et al., 2015). A path query consists of an initial anchor entity s (e.g., TadLincoln)，然后有一系列 relations to be traversed (r1, …, rk) (e.g., (parents, location)). </p><p>可以使用 vector space compositions 把 embeddings of individual relations $r_i$ 组合成 embedding of the path $(r_1, …, r_k)$ 。</p><p>这些 KB embedding 方法在给定一个 KB 然后验证 unseen facts(e.g., triples and path queries) 的时候展示了 good generalization performance。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Conversational AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QA </tag>
+            
+            <tag> KBQA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Conversational AI（3）：Conversational QA 概述</title>
       <link href="/conversational-ai-3/"/>
       <url>/conversational-ai-3/</url>
       
-        <content type="html"><![CDATA[<p>在 《Conversational AI（1）：概述》中提到了，Conversational AI 的分类：</p><ul><li>QA bots</li><li>Task-oriented bots，通常使用模块化系统实现，bot 访问外部数据库查询信息并完成任务，（Young et al., 2013; Tur and De Mori, 2011）。</li><li>Social chatbots，也就是chitchat，通常使用非模块化系统实现，这是由于它的任务是通过与人们的情感联系成为人们的AI伙伴，而不是完成具体的任务，通常使用模仿人类对话的基于深度神经网络的 response generation 模型来实现（训练数据是大量的人与人对话数据）（Ritter et al., 2011; Sordoni et al., 2015b; Vinyals and Le, 2015; Shang et al., 2015）。 </li></ul><p>其中第一类是 conversational QA agents，分为两类：</p><ul><li>KB-QA agents，允许用户查询一个大规模的 Knowledge Base (KB) </li><li>Text-QA agents，允许用户查询自然语言文档的集合，</li></ul><h2 id="KB-QA-agents"><a href="#KB-QA-agents" class="headerlink" title="KB-QA agents"></a>KB-QA agents</h2><p>KB-QA agents 比传统的 SQL-like systems 更灵活和友好，用户可以交互式的查询 KB 而不需要写 SQL-like queries。 </p><p>KB-QA 的 approaches 大致有如下几种：</p><ul><li>Symbolic approaches to KB-QA based on semantic<br>parsing，但是 symbolic system is hard to scale because the keyword-matching-based, query-to-answer inference used by the system is inefficient for a very large KB, and is not robust to paraphrasing.</li><li>为了解决 Symbolic approaches 的问题，neural approaches are developed to represent queries and KB using continuous semantic vectors so that the inference can be performed at the semantic level<br>in a compact neural space.</li></ul><h2 id="Text-QA-agents"><a href="#Text-QA-agents" class="headerlink" title="Text-QA agents"></a>Text-QA agents</h2><p>Text-QA agents 在移动设备比传统的搜索引擎（Bing and Google）使用起来更简单，这是因为它们直接返回简洁的答案，而不是返回 relevant documents 的排序列表。</p><p>The heart of these systems is a neural Machine Reading Comprehension (MRC) model that generates an answer to an input question based on a (set of) passage(s)。</p><p>State-of-the-art MRC 技术包括如下两种：</p><ul><li>the methods of encoding questions and passages as vectors in a neural space</li><li>the methods of performing reasoning in the neural space to generate the answer. </li></ul>]]></content>
+        <content type="html"><![CDATA[<p>在 《Conversational AI（1）：概述》中提到了，Conversational AI 的分类：</p><ul><li>QA bots</li><li>Task-oriented bots，通常使用模块化系统实现，bot 访问外部数据库查询信息并完成任务，（Young et al., 2013; Tur and De Mori, 2011）。</li><li>Social chatbots，也就是chitchat，通常使用非模块化系统实现，这是由于它的任务是通过与人们的情感联系成为人们的AI伙伴，而不是完成具体的任务，通常使用模仿人类对话的基于深度神经网络的 response generation 模型来实现（训练数据是大量的人与人对话数据）（Ritter et al., 2011; Sordoni et al., 2015b; Vinyals and Le, 2015; Shang et al., 2015）。 </li></ul><p>其中第一类是 conversational QA agents，分为两类：</p><ul><li>KB-QA agents，允许用户查询一个大规模的 Knowledge Base (KB) </li><li>Text-QA agents，允许用户查询自然语言文档的集合，</li></ul><h2 id="KB-QA-agents"><a href="#KB-QA-agents" class="headerlink" title="KB-QA agents"></a>KB-QA agents</h2><p>KB-QA agents 比传统的 SQL-like systems 更灵活和友好，用户可以交互式的查询 KB 而不需要写 SQL-like queries。 </p><p>KB-QA 的 approaches 大致有如下几种：</p><ul><li>Symbolic approaches to KB-QA based on semantic<br>parsing，但是 symbolic system is hard to scale because the keyword-matching-based, query-to-answer inference used by the system is inefficient for a very large KB, and is not robust to paraphrasing.</li><li>为了解决 Symbolic approaches 的问题，neural approaches are developed to represent queries and KB using continuous semantic vectors so that the inference can be performed at the semantic level in a compact neural space.</li></ul><h2 id="Text-QA-agents"><a href="#Text-QA-agents" class="headerlink" title="Text-QA agents"></a>Text-QA agents</h2><p>Text-QA agents 在移动设备比传统的搜索引擎（Bing and Google）使用起来更简单，这是因为它们直接返回简洁的答案，而不是返回 relevant documents 的排序列表。</p><p>The heart of these systems is a neural Machine Reading Comprehension (MRC) model that generates an answer to an input question based on a (set of) passage(s)。</p><p>State-of-the-art MRC 技术包括如下两种：</p><ul><li>the methods of encoding questions and passages as vectors in a neural space</li><li>the methods of performing reasoning in the neural space to generate the answer. </li></ul>]]></content>
       
       
+      <categories>
+          
+          <category> Conversational AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> QA </tag>
+            
+            <tag> KBQA </tag>
+            
+            <tag> TextQA </tag>
+            
+        </tags>
       
     </entry>
     
@@ -154,7 +222,7 @@
       
         <tags>
             
-            <tag> chatbot </tag>
+            <tag> Chatbot </tag>
             
             <tag> QA </tag>
             
@@ -181,11 +249,9 @@
       
         <tags>
             
-            <tag> chatbot </tag>
+            <tag> Chatbot </tag>
             
             <tag> QA </tag>
-            
-            <tag> Neural approaches </tag>
             
         </tags>
       
@@ -237,11 +303,11 @@
       
         <tags>
             
-            <tag> chatbot </tag>
-            
             <tag> QA </tag>
             
             <tag> Evaluation metrics </tag>
+            
+            <tag> chatbot </tag>
             
         </tags>
       
