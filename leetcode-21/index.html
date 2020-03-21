@@ -4,11 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Reinforcement Learning（4）：, 自然语言处理 机器学习 数学">
+    <meta name="keywords" content="LeetCode 21 Merge Two Sorted Lists, 自然语言处理 机器学习 数学">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="Reinforcement Learning（4）： | DaffodilFlower&#39;s blog">
+    <meta name="description" content="这是一道easy题
+要求Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Reinforcement Learning（4）： | DaffodilFlower&#39;s blog</title>
+    <title>LeetCode 21 Merge Two Sorted Lists | DaffodilFlower&#39;s blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -290,13 +291,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Reinforcement Learning（4）：
+                        LeetCode 21 Merge Two Sorted Lists
                     </div>
                 </div>
             </div>
@@ -406,11 +407,28 @@
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        <span class="chip bg-color">无标签</span>
+                        
+                        <a href="/tags/面试/" target="_blank">
+                            <span class="chip bg-color">面试</span>
+                        </a>
+                        
+                        <a href="/tags/LeetCode/" target="_blank">
+                            <span class="chip bg-color">LeetCode</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/面试/" class="post-category" target="_blank">
+                            面试
+                        </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -418,7 +436,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-10
+                    2020-03-21
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -432,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    231
                 </div>
                 
 
@@ -455,7 +473,49 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>这是一道easy题</p>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
+<p>Example:</p>
+<pre><code>Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4
+Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</code></pre><h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>具体思想就是新建一个链表，然后比较两个链表中的元素值，把较小的那个链到新链表中。</p>
+<p>由于两个输入链表的长度可能不同，所以最终会有一个链表先完成插入所有元素，然后把另一个未完成的链表直接链入新链表的末尾。</p>
+<p>C++ 代码如下:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> l1<span class="token punctuation">,</span> ListNode<span class="token operator">*</span> l2<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        ListNode <span class="token operator">*</span>head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">*</span>cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>l1 <span class="token operator">&amp;&amp;</span> l2<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>l1<span class="token operator">-</span><span class="token operator">></span>val <span class="token operator">&lt;</span> l2<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">)</span> 
+            <span class="token punctuation">{</span>
+                cur<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> l1<span class="token punctuation">;</span>
+                l1 <span class="token operator">=</span> l1<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> 
+            <span class="token keyword">else</span> 
+            <span class="token punctuation">{</span>
+                cur<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> l2<span class="token punctuation">;</span>
+                l2 <span class="token operator">=</span> l2<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            cur <span class="token operator">=</span> cur<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        cur<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> l1 <span class="token operator">?</span> l1 <span class="token operator">:</span> l2<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> head<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<p><img src="img/2020-03-21-22-33-43.png" alt></p>
+
             </div>
             <hr />
 
@@ -489,9 +549,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Reinforcement Learning（4）：》
+                    《LeetCode 21 Merge Two Sorted Lists》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/rl-4/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/leetcode-21/" property="cc:attributionName"
                rel="cc:attributionURL">
                 DaffodilFlower
             </a> 采用
@@ -532,7 +592,7 @@
         repo: 'DaffodilFlower.github.io',
         owner: 'DaffodilFlower',
         admin: "DaffodilFlower",
-        id: 'rl-4/',
+        id: 'leetcode-21/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -553,57 +613,53 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/gdb-pdb/">
+                <a href="/leetcode-21/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="gdb和pdb常用命令">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="LeetCode 21 Merge Two Sorted Lists">
                         
-                        <span class="card-title">gdb和pdb常用命令</span>
+                        <span class="card-title">LeetCode 21 Merge Two Sorted Lists</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            常用的gdb命令gdb 是 C/C++ 的调试工具
-
-常用的 ipdb 命令pdb 是 python调试工具，ipdb 是 pdb 的加强版，它和pdb有相同的接口，增加了语法高亮、tab补全、更友好的堆栈信息等功能。
-h(help)：帮助
+                            这是一道easy题
+要求Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together 
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/调试/" class="post-category" target="_blank">
-                                    调试
+                            <a href="/categories/面试/" class="post-category" target="_blank">
+                                    面试
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/面试/" target="_blank">
+                        <span class="chip bg-color">面试</span>
                     </a>
                     
-                    <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C</span>
-                    </a>
-                    
-                    <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/LeetCode/" target="_blank">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
@@ -617,32 +673,34 @@ h(help)：帮助
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/rl-3/">
+                <a href="/conversational-ai-5/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Reinforcement Learning（3）：Policy Gradient">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="Conversational AI（5）：Multi-Step Reasoning on KB">
                         
-                        <span class="card-title">Reinforcement Learning（3）：Policy Gradient</span>
+                        <span class="card-title">Conversational AI（5）：Multi-Step Reasoning on KB</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前一篇文章讲了基础算法中的基于 value function 的方法。
-本文介绍另外一种算法，它试图直接优化 policy $\pi(s; \theta)$（ $\theta \in R^d$ 是参数，$\pi$ 通常是 actions 的
+                            KB-QA is performed in two steps: 
+
+(1) semantic parsing translates a question into a KB query 
+(2) KBR traverses the que
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-10
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Reinforcement-Learning/" class="post-category" target="_blank">
-                                    Reinforcement Learning
+                            <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
+                                    Conversational AI
                                 </a>
                             
                             
@@ -652,12 +710,8 @@ h(help)：帮助
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Reinforcement-Learning/" target="_blank">
-                        <span class="chip bg-color">Reinforcement Learning</span>
-                    </a>
-                    
-                    <a href="/tags/Policy-Gradient/" target="_blank">
-                        <span class="chip bg-color">Policy Gradient</span>
+                    <a href="/tags/Knowledge-Graph-Reasoning/" target="_blank">
+                        <span class="chip bg-color">Knowledge Graph Reasoning</span>
                     </a>
                     
                 </div>

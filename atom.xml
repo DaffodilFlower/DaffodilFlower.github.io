@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://daffodilflower.github.io/"/>
-  <updated>2020-02-15T10:00:10.157Z</updated>
+  <updated>2020-03-21T14:43:50.454Z</updated>
   <id>https://daffodilflower.github.io/</id>
   
   <author>
@@ -17,13 +17,53 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LeetCode 21 Merge Two Sorted Lists</title>
+    <link href="https://daffodilflower.github.io/leetcode-21/"/>
+    <id>https://daffodilflower.github.io/leetcode-21/</id>
+    <published>2020-03-21T14:30:23.000Z</published>
+    <updated>2020-03-21T14:43:50.454Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这是一道easy题&lt;/p&gt;
+&lt;h2 id=&quot;要求&quot;&gt;&lt;a href=&quot;#要求&quot; class=&quot;headerlink&quot; title=&quot;要求&quot;&gt;&lt;/a&gt;要求&lt;/h2&gt;&lt;p&gt;Merge two sorted linked lists and return it as a new
+        
+      
+    
+    </summary>
+    
+      <category term="面试" scheme="https://daffodilflower.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="面试" scheme="https://daffodilflower.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="LeetCode" scheme="https://daffodilflower.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Conversational AI（5）：Multi-Step Reasoning on KB</title>
     <link href="https://daffodilflower.github.io/conversational-ai-5/"/>
     <id>https://daffodilflower.github.io/conversational-ai-5/</id>
     <published>2020-02-15T09:59:07.000Z</published>
-    <updated>2020-02-15T10:00:10.157Z</updated>
+    <updated>2020-02-15T15:18:36.335Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;KB-QA is performed in two steps: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(1) semantic parsing translates a question into a KB query &lt;/li&gt;
+&lt;li&gt;(2) KBR traverses
+        
+      
     
     </summary>
     

@@ -8,7 +8,10 @@
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="Conversational AI（5）：Multi-Step Reasoning on KB | DaffodilFlower&#39;s blog">
+    <meta name="description" content="KB-QA is performed in two steps: 
+
+(1) semantic parsing translates a question into a KB query 
+(2) KBR traverses the que">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -445,14 +448,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    10 分
                 </div>
                 
                 
@@ -468,7 +471,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>KB-QA is performed in two steps: </p>
+<ul>
+<li>(1) semantic parsing translates a question into a KB query </li>
+<li>(2) KBR traverses the query-matched paths in a KB to find the answers</li>
+</ul>
+<p>因此 Knowledge Base Reasoning（KBR）是 KB-QA 的一个 subtask。 </p>
+<p>为了在 KB 上进行推理，for each relation $r \in R$, we are interested in learning a set of first-order logical rules in the form of relational paths, $\pi = (r_1, …, r_k)$ </p>
+<p><img src="img/2020-02-15-21-27-47.png" alt="图2"></p>
+<p>如图2所示，给定 question “What is the citizenship of Obama?”，它被 translated 为 subject-predicate-object triple 形式的 KB query $(Obama, citizenship, ?)$。 除非 KB 中有 $(Obama, citizenship, USA)$ 这样的三元组，一个 multi-step reasoning 过程来推导 answer from the paths that contain relevant triples，如$(Obama, born-in, Hawaii)$ 和 $(Hawaii, part-of, USA)$，using the learned relational paths，如$(born-in, part-of)$。</p>
+<p>下面介绍三种 multi-step KBR methods。它们的区别在于 reasoning 是否 performed in a discrete symbolic space or a continuous neural space。</p>
+<h2 id="Symbolic-Methods"><a href="#Symbolic-Methods" class="headerlink" title="Symbolic Methods"></a>Symbolic Methods</h2><p>The Path Ranking Algorithm（PRA）（Lao and Cohen, 2010; Lao et al.,2011）is one of the primary symbolic approaches to learning relational paths in large KBs。</p>
+<p>PRA 使用 random walks with restarts to perform multiple bounded depth-first search to find relational paths。表1展示了一个 PRA 学习到的 relational paths 样本。Relational path 是一个序列 $\pi = (r_1, …, r_k)$。Relational path 的一个 instance 是一个 nodes 的序列 $e_1, …, e_{k+1}$ 使得 $(ei, ri, ei+1)$ 是一个 valid triple。</p>
+<p>在 KBR 过程中，给定一个 query $q = (s, r, ?)$，PRA 选择 $r$ 的relational paths 集合，记作 $B_r = \{\pi1, \pi2, …\}$，然后依据 query 和 $B_r$ traverses the KB，然后使用一个线性模型把每个candidate answer t 打分：</p>
+<p><img src="img/2020-02-15-21-51-25.png" alt="图2"></p>
+<p>其中</p>
+<ul>
+<li>$\lambda_{\pi}$ 是 learned weights</li>
+<li>$P(t|s,\pi)$ 是通过 instantiates the relational path $\pi$ 的 random walk（path constrained random walk）从 t 到 s 的概率。</li>
+</ul>
+<p>由于 PRA 在一个完全的离散空间中执行，它不考虑 relation 之间的语义相似性。因此，即使一个很小的 path length，PRA 也会产生 millions of categorically distinct paths，这不仅 hurts generalization but makes reasoning prohibitively expensive。</p>
+<p>为了减少 relational paths 的数量，Lao et al.（2011）使用了 heuristics (如 PRA 包含一个 path 需要满足这个path 检索到至少一个 target entity in the training data) 以及在训练图2 linear model 时的 loss function 加上 L1 regularization term。</p>
+<p>Gardner et al.（2014）提出了一个 PRA 的改进，利用 KB embedding methods，collapse and cluster PRA paths according to their<br>relation embeddings.</p>
+<h2 id="Neural-Methods"><a href="#Neural-Methods" class="headerlink" title="Neural Methods"></a>Neural Methods</h2><p>Implicit ReasoNet（IRN，Shen et al., 2016, 2017a）and Neural Logic Programming（Neural LP，Yang et al., 2017a）are proposed to perform multi-step KBR in a neural space and achieve state-of-the-art results on popular benchmarks. </p>
+<p>总体架构如图3所示：</p>
+<p><img src="img/2020-02-15-22-17-53.png" alt="图3"></p>
+<p>下面用 IRN 作为例子来描述 neural methods。</p>
+<p>IRN 包含四个模块：encoder, decoder, shared memory, and controller。</p>
+<ul>
+<li>Encoder and Decoder These two modules are task-dependent. Given an input query (s, r, ?), the encoder maps s and r, respectively, into their embedding vectors and then concatenates the<br>two vectors to form the initial hidden state vector s0 of the controller. The use of vectors rather than<br>matrices for relation representations is inspired by the bilinear-diag model (Yang et al., 2015), which<br>restricts the relation representations to the class of diagonal matrices.</li>
+</ul>
+<p>The decoder outputs a prediction vector o = tanh(W&gt;<br>o<br>st + bo), a nonlinear projection of state s<br>at time t, where Wo and bo are the weight matrix and bias vector, respectively. In KBR, we can<br>map the answer vector o to its answer node (entity) o in the symbolic space based on L1 distance as<br>o = arg mine∈E ko − xek1, where xe is the embedding vector of entity e.</p>
+<ul>
+<li><p>Shared Memory The shared memory M is differentiable, and consists of a list of vectors<br>{mi}1≤i≤|M| that are randomly initialized and updated through back-propagation in training. M<br>stores a compact version of KB optimized for the KBR task. That is, each vector represents a<br>concept (a cluster of relations or entities) and the distance between vectors represents the semantic<br>relatedness of these concepts. For example, the system may fail to answer the question (Obama,<br>citizenship, ?) even if it finds the relevant facts in M, such as (Obama, born-in, Hawaii)<br>and (Hawaii, part-of, USA), because it does not know that bore-in and citizenship are semantically related relations. In order to correct the error, M needs to be updated using the gradient<br>to encode the piece of new information by moving the two relation vectors closer to each other in<br>the neural space.</p>
+</li>
+<li><p>Controller The controller is implemented as an RNN. Given initial state s0, it uses attention to<br>iteratively lookup and fetch information from M to update the state st at time t according to Eqn. 3.4,<br>until it decides to terminate the reasoning process and calls the decoder to generate the output.</p>
+</li>
+</ul>
+<p>where W’s are learned projection matrices, λ a scaling factor and g a nonlinear activation function.<br>The reasoning process of IRN can be viewed as a Markov Decision Process (MDP), as illustrated in<br>Sec. 2.3.1. The step size in the information lookup and fetching sequence of Eqn. 3.4 is not given<br>by training data, but is decided by the controller on the fly. More complex queries need more steps.<br>Thus, IRN learns a stochastic policy to get a distribution over termination and prediction actions<br>by the REINFORCE algorithm (Williams, 1992), which is described in Sec. 2.3.2 and Eqn. 2.7.<br>Since all the modules of IRN are differentiable, IRN is an end-to-end differentiable neural model<br>whose parameters, including the embedded KB matrix M, can be jointly optimized using SGD on<br>the training samples derived from a KB, as shown in Fig. 3.3.</p>
+<p>就像在《Conversational AI（2）：Approaches的变迁》的图2所示，neural methods operate in a continuous neural space，不会 suffer from<br>the problems associated with symbolic methods。它们对于 paraphrase alternations 非常健壮，这是因为 knowledge is implicitly represented by semantic classes via continuous vectors and matrices。它们也不会 suffer from the search complexity issue even with complex queries (e.g.path queries) and a very large KB，这是因为它们在 KB 的 compact representation（the matrix M in the shared memory in IRN）上进行推理，而不是在 KB 本身进行推理。</p>
+<p><strong>One of the major limitations of these methods is the lack of interpretability</strong>。不像 PRA 显式的通过图2 traverses the paths in the graph，IRN 在 reasoning 的时候不会显式的 follow 任何一个 KB 中的 path，而是执行 lookup operations over the shared memory iteratively using the RNN controller with attention，each time using the revised internal state s as a query for lookup。</p>
+<p>It remains challenging to recover the symbolic representations of queries and paths (or first-order logical rules) from the neural controller. See (Shen et al., 2017a; Yang et al., 2017a) for some<br>interesting preliminary results of interpretation of neural method。</p>
+<h2 id="Reinforcement-Learning-based-Methods"><a href="#Reinforcement-Learning-based-Methods" class="headerlink" title="Reinforcement Learning based Methods"></a>Reinforcement Learning based Methods</h2><p>DeepPath (Xiong et al., 2017), MINERVA (Das et al., 2017b) and M-Walk (Shen et al., 2018) are among the state-of-the-art methods that use RL for multi-step reasoning over a KB. </p>
+<p>它们使用一个 policy-based agent with continuous states based on KB embeddings to traverse the knowledge graph to identify the answer node (entity) for an input query. </p>
+<p>RL-based methods 和 neural methods 一样健壮，这是由于使用了 continuous vectors for state representation，也和 symbolic methods 一样可解释，这是因为 agents 显式的 traverse the paths in the graph.</p>
+<p>把 KBR 形式化为一个 MDP $(S,A, R,P)$，其中： </p>
+<ul>
+<li>S is the continuous state space</li>
+<li>A the set of available actions</li>
+<li>P the state transition probability matrix</li>
+<li>R the reward function. </li>
+</ul>
+<p>下面使用  M-Walk 来描述。 </p>
+<p>把 KB 表示为 graph $\mathcal G(\mathcal E, \mathcal R)$ ，包含 entity nodes 集合 $\mathcal E$ 和 relation edges 集合 $\mathcal R$ 。</p>
+<p>把 KB query 表示为 $q = (e0, r, ?)$，其中  $e_0$ and $r$ are the given source node and relation, respectively, and $?$ the answer node to be identified.</p>
+<ul>
+<li><p>States：设 $s_t$ 表示 state at time t，它 encodes information of all traversed nodes up to t，所有以前的 selected actions 和 the initial query q。 $s_t$ 可以被递归的定义为：</p>
+<p>  <img src="img/2020-02-15-22-51-42.png" alt></p>
+<p>  其中：</p>
+<ul>
+<li><p>$a_t \in A$ 是 agent 在 time t 选择的 action</p>
+</li>
+<li><p>$e_t$ 是当前访问的node</p>
+</li>
+<li><p>$R_{et} \in R$ 是 $e_t$ 所有边的集合 </p>
+</li>
+<li><p>$E_{et} \in E$ 连接到 $e_t$ 所有 nodes 的集合 </p>
+<p>注意到 RL-based methods, $s_t$ 使用被表示为一个 continuous vector，如 M-Walk 和 MINERVA 用 RNN，DeepPath 用 MLP</p>
+</li>
+</ul>
+</li>
+<li><p>Actions：基于 $s_t$， agent selects one of the following actions: </p>
+<ul>
+<li>(1) choosing an edge in Eet and moving to the next node et+1 ∈ E</li>
+<li>(2) terminating the reasoning process and outputting thecurrent node et as a prediction of the answer node eT .</li>
+</ul>
+</li>
+<li><p>Transitions：The transitions are deterministic. As shown in Fig. 3.2, once action at is selected, the next node et+1 and its associated Eet+1 and Ret+1 are known.</p>
+</li>
+<li><p>Rewards：We only have the terminal reward of +1 if eT is the correct answer, and 0 otherwise.</p>
+</li>
+<li><p>Policy：Network The policy $\pi_{\theta}(a|s)$ 表示给定 state s 选择 action 的概率，通过参数为 $\theta$ 的 neural network 实现。The policy network 通过最大化从 $s_0$ 开始的按照 policy πθ 的 long-term reward $E[V_{\theta}(s_0)]$ 进行优化。</p>
+<p>  In KBR, the policy network can be trained using RL, such as the REINFORCE method, from the training samples in the form of triples $(e_s, r, e_t)$ extracted from a KB。</p>
+<p>  为了解决 reward sparsity issue (即 the reward is only available at the end of a path)，Shen et al.（2018）提出用 Monte Carlo Tree Search 来生成 a set of simulated paths with more positive terminal rewards by exploiting the fact that all the transitions are deterministic for a given knowledge graph。</p>
+</li>
+</ul>
+
             </div>
             <hr />
 
@@ -566,48 +654,51 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/conversational-ai-5/">
+                <a href="/leetcode-21/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="Conversational AI（5）：Multi-Step Reasoning on KB">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="LeetCode 21 Merge Two Sorted Lists">
                         
-                        <span class="card-title">Conversational AI（5）：Multi-Step Reasoning on KB</span>
+                        <span class="card-title">LeetCode 21 Merge Two Sorted Lists</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            这是一道easy题
+要求Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together 
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-15
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-21
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Conversational-AI/" class="post-category" target="_blank">
-                                    Conversational AI
+                            <a href="/categories/面试/" class="post-category" target="_blank">
+                                    面试
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Knowledge-Graph-Reasoning/" target="_blank">
-                        <span class="chip bg-color">Knowledge Graph Reasoning</span>
+                    <a href="/tags/面试/" target="_blank">
+                        <span class="chip bg-color">面试</span>
+                    </a>
+                    
+                    <a href="/tags/LeetCode/" target="_blank">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
@@ -823,7 +914,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">7k</span>
+            <span class="white-color">9.1k</span>
             
 
             <br>
