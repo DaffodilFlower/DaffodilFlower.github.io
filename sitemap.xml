@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://daffodilflower.github.io/rl-1/</loc>
+    
+    <lastmod>2020-03-21T15:30:51.738Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://daffodilflower.github.io/word2html/</loc>
+    
+    <lastmod>2020-03-21T15:10:39.553Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://daffodilflower.github.io/leetcode-21/</loc>
     
     <lastmod>2020-03-21T14:47:43.567Z</lastmod>
@@ -65,13 +79,6 @@
   </url>
   
   <url>
-    <loc>https://daffodilflower.github.io/rl-1/</loc>
-    
-    <lastmod>2020-02-10T08:30:12.541Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://daffodilflower.github.io/attention-1/</loc>
     
     <lastmod>2020-02-07T08:04:30.243Z</lastmod>
@@ -82,13 +89,6 @@
     <loc>https://daffodilflower.github.io/recall-at-k/</loc>
     
     <lastmod>2020-02-07T02:41:32.396Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://daffodilflower.github.io/word2html/</loc>
-    
-    <lastmod>2020-02-06T04:09:32.872Z</lastmod>
     
   </url>
   
