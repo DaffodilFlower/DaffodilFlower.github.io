@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>LeetCode 21 Merge Two Sorted Lists</title>
-      <link href="/leetcode-21/"/>
-      <url>/leetcode-21/</url>
-      
-        <content type="html"><![CDATA[<p>这是一道easy题</p><h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p><p>Example:</p><pre><code>Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</code></pre><h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>具体思想就是新建一个链表，然后比较两个链表中的元素值，把较小的那个链到新链表中。</p><p>由于两个输入链表的长度可能不同，所以最终会有一个链表先完成插入所有元素，然后把另一个未完成的链表直接链入新链表的末尾。</p><p>C++ 代码如下:</p><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">/** * Definition for singly-linked list. * struct ListNode { *     int val; *     ListNode *next; *     ListNode(int x) : val(x), next(NULL) {} * }; */</span><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span><span class="token keyword">public</span><span class="token operator">:</span>    ListNode<span class="token operator">*</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> l1<span class="token punctuation">,</span> ListNode<span class="token operator">*</span> l2<span class="token punctuation">)</span>     <span class="token punctuation">{</span>        ListNode <span class="token operator">*</span>head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">*</span>cur <span class="token operator">=</span> head<span class="token punctuation">;</span>        <span class="token keyword">while</span> <span class="token punctuation">(</span>l1 <span class="token operator">&amp;&amp;</span> l2<span class="token punctuation">)</span>         <span class="token punctuation">{</span>            <span class="token keyword">if</span> <span class="token punctuation">(</span>l1<span class="token operator">-</span><span class="token operator">></span>val <span class="token operator">&lt;</span> l2<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">)</span>             <span class="token punctuation">{</span>                cur<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> l1<span class="token punctuation">;</span>                l1 <span class="token operator">=</span> l1<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>            <span class="token punctuation">}</span>             <span class="token keyword">else</span>             <span class="token punctuation">{</span>                cur<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> l2<span class="token punctuation">;</span>                l2 <span class="token operator">=</span> l2<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>            <span class="token punctuation">}</span>            cur <span class="token operator">=</span> cur<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>        <span class="token punctuation">}</span>        cur<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> l1 <span class="token operator">?</span> l1 <span class="token operator">:</span> l2<span class="token punctuation">;</span>        <span class="token keyword">return</span> head<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>结果：</p><p><img src="1.png" alt></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 面试 </tag>
-            
-            <tag> LeetCode </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Conversational AI（4）：Sematic Parsing and Embedding-based methods for KBQA</title>
       <link href="/conversational-ai-4/"/>
       <url>/conversational-ai-4/</url>
